@@ -1,0 +1,189 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "1:4618804454351060149",
+      "lastPropertyId": "19:8755329377193379155",
+      "name": "Transaction",
+      "properties": [
+        {
+          "id": "1:8781276084069730392",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:5363576776313056651",
+          "name": "amountReceived",
+          "type": 6
+        },
+        {
+          "id": "3:229819085246340484",
+          "name": "amount",
+          "type": 6
+        },
+        {
+          "id": "4:5878102752321537457",
+          "name": "status",
+          "type": 9
+        },
+        {
+          "id": "5:8305986931400052475",
+          "name": "type",
+          "type": 9
+        },
+        {
+          "id": "6:7264058677602750385",
+          "name": "userReference",
+          "type": 9
+        },
+        {
+          "id": "7:6293508356562973890",
+          "name": "uuid",
+          "type": 9
+        },
+        {
+          "id": "8:4943537041431973658",
+          "name": "paymentMethodCode",
+          "type": 9
+        },
+        {
+          "id": "9:8724710210847963717",
+          "name": "currencyCode",
+          "type": 9
+        },
+        {
+          "id": "10:3030383297571253175",
+          "name": "countryCode",
+          "type": 9
+        },
+        {
+          "id": "11:1072215046016527590",
+          "name": "recipient",
+          "type": 9
+        },
+        {
+          "id": "12:5633732686808401858",
+          "name": "description",
+          "type": 9
+        },
+        {
+          "id": "13:3822715295521455656",
+          "name": "isMock",
+          "type": 6
+        },
+        {
+          "id": "14:3860362108556479532",
+          "name": "createdAt",
+          "type": 10
+        },
+        {
+          "id": "15:4631079861882208978",
+          "name": "updatedAt",
+          "type": 10
+        },
+        {
+          "id": "16:3584914286842630199",
+          "name": "customerId",
+          "type": 9
+        },
+        {
+          "id": "17:1157199010989443061",
+          "name": "customerName",
+          "type": 9
+        },
+        {
+          "id": "18:6542159976294183066",
+          "name": "customerAddress",
+          "type": 9
+        },
+        {
+          "id": "19:8755329377193379155",
+          "name": "customerPhone",
+          "type": 9
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "4:5190749310215474288",
+      "lastPropertyId": "8:7345387511162925630",
+      "name": "PaymentLog",
+      "properties": [
+        {
+          "id": "1:8413731802151063849",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:175843362128520194",
+          "name": "code",
+          "type": 9
+        },
+        {
+          "id": "3:2845615337566699016",
+          "name": "amount",
+          "type": 6
+        },
+        {
+          "id": "4:6263750282429988447",
+          "name": "serviceName",
+          "type": 9
+        },
+        {
+          "id": "5:8347233097877066548",
+          "name": "createdAt",
+          "type": 10
+        },
+        {
+          "id": "6:4806270593745152372",
+          "name": "creditDestination",
+          "type": 9
+        },
+        {
+          "id": "7:5913572540638713264",
+          "name": "debitDestination",
+          "type": 9
+        },
+        {
+          "id": "8:7345387511162925630",
+          "name": "productName",
+          "type": 9
+        }
+      ],
+      "relations": []
+    }
+  ],
+  "lastEntityId": "4:5190749310215474288",
+  "lastIndexId": "0:0",
+  "lastRelationId": "0:0",
+  "lastSequenceId": "0:0",
+  "modelVersion": 5,
+  "modelVersionParserMinimum": 5,
+  "retiredEntityUids": [
+    1421381205658015858,
+    2547090182853682123
+  ],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [
+    1703246547260338526,
+    6731676569624953537,
+    6648663121894049521,
+    4964717895289544376,
+    6534113584853299454,
+    7187198452262627234,
+    7215279626024045783,
+    5100979491491859758,
+    6182488005674684572,
+    2213963246362270488,
+    653373784652059345,
+    7588859077745166218,
+    8356516969774805748,
+    5631025596213657778
+  ],
+  "retiredRelationUids": [],
+  "version": 1
+}
