@@ -12,7 +12,7 @@ part of 'initiate_transaction_result.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 InitiateTransactionResult _$InitiateTransactionResultFromJson(
     Map<String, dynamic> json) {
@@ -74,12 +74,12 @@ class _$InitiateTransactionResultCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_InitiateTransactionResultCopyWith<$Res>
+abstract class _$$InitiateTransactionResultImplCopyWith<$Res>
     implements $InitiateTransactionResultCopyWith<$Res> {
-  factory _$$_InitiateTransactionResultCopyWith(
-          _$_InitiateTransactionResult value,
-          $Res Function(_$_InitiateTransactionResult) then) =
-      __$$_InitiateTransactionResultCopyWithImpl<$Res>;
+  factory _$$InitiateTransactionResultImplCopyWith(
+          _$InitiateTransactionResultImpl value,
+          $Res Function(_$InitiateTransactionResultImpl) then) =
+      __$$InitiateTransactionResultImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({Transaction transaction});
@@ -89,13 +89,13 @@ abstract class _$$_InitiateTransactionResultCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_InitiateTransactionResultCopyWithImpl<$Res>
+class __$$InitiateTransactionResultImplCopyWithImpl<$Res>
     extends _$InitiateTransactionResultCopyWithImpl<$Res,
-        _$_InitiateTransactionResult>
-    implements _$$_InitiateTransactionResultCopyWith<$Res> {
-  __$$_InitiateTransactionResultCopyWithImpl(
-      _$_InitiateTransactionResult _value,
-      $Res Function(_$_InitiateTransactionResult) _then)
+        _$InitiateTransactionResultImpl>
+    implements _$$InitiateTransactionResultImplCopyWith<$Res> {
+  __$$InitiateTransactionResultImplCopyWithImpl(
+      _$InitiateTransactionResultImpl _value,
+      $Res Function(_$InitiateTransactionResultImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -103,7 +103,7 @@ class __$$_InitiateTransactionResultCopyWithImpl<$Res>
   $Res call({
     Object? transaction = null,
   }) {
-    return _then(_$_InitiateTransactionResult(
+    return _then(_$InitiateTransactionResultImpl(
       transaction: null == transaction
           ? _value.transaction
           : transaction // ignore: cast_nullable_to_non_nullable
@@ -114,11 +114,11 @@ class __$$_InitiateTransactionResultCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_InitiateTransactionResult implements _InitiateTransactionResult {
-  _$_InitiateTransactionResult({required this.transaction});
+class _$InitiateTransactionResultImpl implements _InitiateTransactionResult {
+  _$InitiateTransactionResultImpl({required this.transaction});
 
-  factory _$_InitiateTransactionResult.fromJson(Map<String, dynamic> json) =>
-      _$$_InitiateTransactionResultFromJson(json);
+  factory _$InitiateTransactionResultImpl.fromJson(Map<String, dynamic> json) =>
+      _$$InitiateTransactionResultImplFromJson(json);
 
   @override
   final Transaction transaction;
@@ -129,10 +129,10 @@ class _$_InitiateTransactionResult implements _InitiateTransactionResult {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_InitiateTransactionResult &&
+            other is _$InitiateTransactionResultImpl &&
             (identical(other.transaction, transaction) ||
                 other.transaction == transaction));
   }
@@ -144,13 +144,13 @@ class _$_InitiateTransactionResult implements _InitiateTransactionResult {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_InitiateTransactionResultCopyWith<_$_InitiateTransactionResult>
-      get copyWith => __$$_InitiateTransactionResultCopyWithImpl<
-          _$_InitiateTransactionResult>(this, _$identity);
+  _$$InitiateTransactionResultImplCopyWith<_$InitiateTransactionResultImpl>
+      get copyWith => __$$InitiateTransactionResultImplCopyWithImpl<
+          _$InitiateTransactionResultImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_InitiateTransactionResultToJson(
+    return _$$InitiateTransactionResultImplToJson(
       this,
     );
   }
@@ -158,15 +158,15 @@ class _$_InitiateTransactionResult implements _InitiateTransactionResult {
 
 abstract class _InitiateTransactionResult implements InitiateTransactionResult {
   factory _InitiateTransactionResult({required final Transaction transaction}) =
-      _$_InitiateTransactionResult;
+      _$InitiateTransactionResultImpl;
 
   factory _InitiateTransactionResult.fromJson(Map<String, dynamic> json) =
-      _$_InitiateTransactionResult.fromJson;
+      _$InitiateTransactionResultImpl.fromJson;
 
   @override
   Transaction get transaction;
   @override
   @JsonKey(ignore: true)
-  _$$_InitiateTransactionResultCopyWith<_$_InitiateTransactionResult>
+  _$$InitiateTransactionResultImplCopyWith<_$InitiateTransactionResultImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

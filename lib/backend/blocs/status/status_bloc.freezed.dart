@@ -12,7 +12,7 @@ part of 'status_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$StatusState {
@@ -73,11 +73,11 @@ class _$StatusStateCopyWithImpl<$Res, $Val extends StatusState>
 }
 
 /// @nodoc
-abstract class _$$_StatusStateCopyWith<$Res>
+abstract class _$$StatusStateImplCopyWith<$Res>
     implements $StatusStateCopyWith<$Res> {
-  factory _$$_StatusStateCopyWith(
-          _$_StatusState value, $Res Function(_$_StatusState) then) =
-      __$$_StatusStateCopyWithImpl<$Res>;
+  factory _$$StatusStateImplCopyWith(
+          _$StatusStateImpl value, $Res Function(_$StatusStateImpl) then) =
+      __$$StatusStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({Payment payment, bool isVerifying});
@@ -87,11 +87,11 @@ abstract class _$$_StatusStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_StatusStateCopyWithImpl<$Res>
-    extends _$StatusStateCopyWithImpl<$Res, _$_StatusState>
-    implements _$$_StatusStateCopyWith<$Res> {
-  __$$_StatusStateCopyWithImpl(
-      _$_StatusState _value, $Res Function(_$_StatusState) _then)
+class __$$StatusStateImplCopyWithImpl<$Res>
+    extends _$StatusStateCopyWithImpl<$Res, _$StatusStateImpl>
+    implements _$$StatusStateImplCopyWith<$Res> {
+  __$$StatusStateImplCopyWithImpl(
+      _$StatusStateImpl _value, $Res Function(_$StatusStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -100,7 +100,7 @@ class __$$_StatusStateCopyWithImpl<$Res>
     Object? payment = null,
     Object? isVerifying = null,
   }) {
-    return _then(_$_StatusState(
+    return _then(_$StatusStateImpl(
       payment: null == payment
           ? _value.payment
           : payment // ignore: cast_nullable_to_non_nullable
@@ -115,8 +115,8 @@ class __$$_StatusStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_StatusState implements _StatusState {
-  _$_StatusState({required this.payment, this.isVerifying = false});
+class _$StatusStateImpl implements _StatusState {
+  _$StatusStateImpl({required this.payment, this.isVerifying = false});
 
   @override
   final Payment payment;
@@ -130,10 +130,10 @@ class _$_StatusState implements _StatusState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_StatusState &&
+            other is _$StatusStateImpl &&
             (identical(other.payment, payment) || other.payment == payment) &&
             (identical(other.isVerifying, isVerifying) ||
                 other.isVerifying == isVerifying));
@@ -145,14 +145,14 @@ class _$_StatusState implements _StatusState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_StatusStateCopyWith<_$_StatusState> get copyWith =>
-      __$$_StatusStateCopyWithImpl<_$_StatusState>(this, _$identity);
+  _$$StatusStateImplCopyWith<_$StatusStateImpl> get copyWith =>
+      __$$StatusStateImplCopyWithImpl<_$StatusStateImpl>(this, _$identity);
 }
 
 abstract class _StatusState implements StatusState {
   factory _StatusState(
       {required final Payment payment,
-      final bool isVerifying}) = _$_StatusState;
+      final bool isVerifying}) = _$StatusStateImpl;
 
   @override
   Payment get payment;
@@ -160,6 +160,6 @@ abstract class _StatusState implements StatusState {
   bool get isVerifying;
   @override
   @JsonKey(ignore: true)
-  _$$_StatusStateCopyWith<_$_StatusState> get copyWith =>
+  _$$StatusStateImplCopyWith<_$StatusStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

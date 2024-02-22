@@ -12,7 +12,7 @@ part of 'service_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 ServiceState _$ServiceStateFromJson(Map<String, dynamic> json) {
   return _ServiceState.fromJson(json);
@@ -68,22 +68,22 @@ class _$ServiceStateCopyWithImpl<$Res, $Val extends ServiceState>
 }
 
 /// @nodoc
-abstract class _$$_ServiceStateCopyWith<$Res>
+abstract class _$$ServiceStateImplCopyWith<$Res>
     implements $ServiceStateCopyWith<$Res> {
-  factory _$$_ServiceStateCopyWith(
-          _$_ServiceState value, $Res Function(_$_ServiceState) then) =
-      __$$_ServiceStateCopyWithImpl<$Res>;
+  factory _$$ServiceStateImplCopyWith(
+          _$ServiceStateImpl value, $Res Function(_$ServiceStateImpl) then) =
+      __$$ServiceStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<Service> services, ServiceStatus status});
 }
 
 /// @nodoc
-class __$$_ServiceStateCopyWithImpl<$Res>
-    extends _$ServiceStateCopyWithImpl<$Res, _$_ServiceState>
-    implements _$$_ServiceStateCopyWith<$Res> {
-  __$$_ServiceStateCopyWithImpl(
-      _$_ServiceState _value, $Res Function(_$_ServiceState) _then)
+class __$$ServiceStateImplCopyWithImpl<$Res>
+    extends _$ServiceStateCopyWithImpl<$Res, _$ServiceStateImpl>
+    implements _$$ServiceStateImplCopyWith<$Res> {
+  __$$ServiceStateImplCopyWithImpl(
+      _$ServiceStateImpl _value, $Res Function(_$ServiceStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -92,7 +92,7 @@ class __$$_ServiceStateCopyWithImpl<$Res>
     Object? services = null,
     Object? status = null,
   }) {
-    return _then(_$_ServiceState(
+    return _then(_$ServiceStateImpl(
       services: null == services
           ? _value._services
           : services // ignore: cast_nullable_to_non_nullable
@@ -107,14 +107,14 @@ class __$$_ServiceStateCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ServiceState implements _ServiceState {
-  _$_ServiceState(
+class _$ServiceStateImpl implements _ServiceState {
+  _$ServiceStateImpl(
       {final List<Service> services = const [],
       this.status = ServiceStatus.loading})
       : _services = services;
 
-  factory _$_ServiceState.fromJson(Map<String, dynamic> json) =>
-      _$$_ServiceStateFromJson(json);
+  factory _$ServiceStateImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ServiceStateImplFromJson(json);
 
   final List<Service> _services;
   @override
@@ -135,10 +135,10 @@ class _$_ServiceState implements _ServiceState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ServiceState &&
+            other is _$ServiceStateImpl &&
             const DeepCollectionEquality().equals(other._services, _services) &&
             (identical(other.status, status) || other.status == status));
   }
@@ -151,12 +151,12 @@ class _$_ServiceState implements _ServiceState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ServiceStateCopyWith<_$_ServiceState> get copyWith =>
-      __$$_ServiceStateCopyWithImpl<_$_ServiceState>(this, _$identity);
+  _$$ServiceStateImplCopyWith<_$ServiceStateImpl> get copyWith =>
+      __$$ServiceStateImplCopyWithImpl<_$ServiceStateImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ServiceStateToJson(
+    return _$$ServiceStateImplToJson(
       this,
     );
   }
@@ -165,10 +165,10 @@ class _$_ServiceState implements _ServiceState {
 abstract class _ServiceState implements ServiceState {
   factory _ServiceState(
       {final List<Service> services,
-      final ServiceStatus status}) = _$_ServiceState;
+      final ServiceStatus status}) = _$ServiceStateImpl;
 
   factory _ServiceState.fromJson(Map<String, dynamic> json) =
-      _$_ServiceState.fromJson;
+      _$ServiceStateImpl.fromJson;
 
   @override
   List<Service> get services;
@@ -176,6 +176,6 @@ abstract class _ServiceState implements ServiceState {
   ServiceStatus get status;
   @override
   @JsonKey(ignore: true)
-  _$$_ServiceStateCopyWith<_$_ServiceState> get copyWith =>
+  _$$ServiceStateImplCopyWith<_$ServiceStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

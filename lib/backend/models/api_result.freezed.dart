@@ -12,7 +12,7 @@ part of 'api_result.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 ApiResult<T> _$ApiResultFromJson<T>(
     Map<String, dynamic> json, T Function(Object?) fromJsonT) {
@@ -64,22 +64,22 @@ class _$ApiResultCopyWithImpl<T, $Res, $Val extends ApiResult<T>>
 }
 
 /// @nodoc
-abstract class _$$_ApiResultCopyWith<T, $Res>
+abstract class _$$ApiResultImplCopyWith<T, $Res>
     implements $ApiResultCopyWith<T, $Res> {
-  factory _$$_ApiResultCopyWith(
-          _$_ApiResult<T> value, $Res Function(_$_ApiResult<T>) then) =
-      __$$_ApiResultCopyWithImpl<T, $Res>;
+  factory _$$ApiResultImplCopyWith(
+          _$ApiResultImpl<T> value, $Res Function(_$ApiResultImpl<T>) then) =
+      __$$ApiResultImplCopyWithImpl<T, $Res>;
   @override
   @useResult
   $Res call({T? data});
 }
 
 /// @nodoc
-class __$$_ApiResultCopyWithImpl<T, $Res>
-    extends _$ApiResultCopyWithImpl<T, $Res, _$_ApiResult<T>>
-    implements _$$_ApiResultCopyWith<T, $Res> {
-  __$$_ApiResultCopyWithImpl(
-      _$_ApiResult<T> _value, $Res Function(_$_ApiResult<T>) _then)
+class __$$ApiResultImplCopyWithImpl<T, $Res>
+    extends _$ApiResultCopyWithImpl<T, $Res, _$ApiResultImpl<T>>
+    implements _$$ApiResultImplCopyWith<T, $Res> {
+  __$$ApiResultImplCopyWithImpl(
+      _$ApiResultImpl<T> _value, $Res Function(_$ApiResultImpl<T>) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -87,7 +87,7 @@ class __$$_ApiResultCopyWithImpl<T, $Res>
   $Res call({
     Object? data = freezed,
   }) {
-    return _then(_$_ApiResult<T>(
+    return _then(_$ApiResultImpl<T>(
       data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -98,12 +98,12 @@ class __$$_ApiResultCopyWithImpl<T, $Res>
 
 /// @nodoc
 @JsonSerializable(genericArgumentFactories: true)
-class _$_ApiResult<T> implements _ApiResult<T> {
-  const _$_ApiResult({this.data});
+class _$ApiResultImpl<T> implements _ApiResult<T> {
+  const _$ApiResultImpl({this.data});
 
-  factory _$_ApiResult.fromJson(
+  factory _$ApiResultImpl.fromJson(
           Map<String, dynamic> json, T Function(Object?) fromJsonT) =>
-      _$$_ApiResultFromJson(json, fromJsonT);
+      _$$ApiResultImplFromJson(json, fromJsonT);
 
   @override
   final T? data;
@@ -114,10 +114,10 @@ class _$_ApiResult<T> implements _ApiResult<T> {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ApiResult<T> &&
+            other is _$ApiResultImpl<T> &&
             const DeepCollectionEquality().equals(other.data, data));
   }
 
@@ -129,26 +129,26 @@ class _$_ApiResult<T> implements _ApiResult<T> {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ApiResultCopyWith<T, _$_ApiResult<T>> get copyWith =>
-      __$$_ApiResultCopyWithImpl<T, _$_ApiResult<T>>(this, _$identity);
+  _$$ApiResultImplCopyWith<T, _$ApiResultImpl<T>> get copyWith =>
+      __$$ApiResultImplCopyWithImpl<T, _$ApiResultImpl<T>>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson(Object? Function(T) toJsonT) {
-    return _$$_ApiResultToJson<T>(this, toJsonT);
+    return _$$ApiResultImplToJson<T>(this, toJsonT);
   }
 }
 
 abstract class _ApiResult<T> implements ApiResult<T> {
-  const factory _ApiResult({final T? data}) = _$_ApiResult<T>;
+  const factory _ApiResult({final T? data}) = _$ApiResultImpl<T>;
 
   factory _ApiResult.fromJson(
           Map<String, dynamic> json, T Function(Object?) fromJsonT) =
-      _$_ApiResult<T>.fromJson;
+      _$ApiResultImpl<T>.fromJson;
 
   @override
   T? get data;
   @override
   @JsonKey(ignore: true)
-  _$$_ApiResultCopyWith<T, _$_ApiResult<T>> get copyWith =>
+  _$$ApiResultImplCopyWith<T, _$ApiResultImpl<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }

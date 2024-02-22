@@ -12,7 +12,7 @@ part of 'product.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 Product _$ProductFromJson(Map<String, dynamic> json) {
   return _Product.fromJson(json);
@@ -26,6 +26,11 @@ mixin _$Product {
   String get description => throw _privateConstructorUsedError;
   @JsonKey(name: "default")
   bool get isDefault => throw _privateConstructorUsedError;
+  @JsonKey(name: "featured")
+  bool get isFeatured => throw _privateConstructorUsedError;
+  @JsonKey(name: "promoted")
+  bool get isPromoted => throw _privateConstructorUsedError;
+  ProductTag? get tag => throw _privateConstructorUsedError;
   @JsonKey(name: "fixed_price")
   bool get fixedPrice => throw _privateConstructorUsedError;
   int? get price => throw _privateConstructorUsedError;
@@ -46,6 +51,9 @@ abstract class $ProductCopyWith<$Res> {
       String name,
       String description,
       @JsonKey(name: "default") bool isDefault,
+      @JsonKey(name: "featured") bool isFeatured,
+      @JsonKey(name: "promoted") bool isPromoted,
+      ProductTag? tag,
       @JsonKey(name: "fixed_price") bool fixedPrice,
       int? price});
 }
@@ -68,6 +76,9 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
     Object? name = null,
     Object? description = null,
     Object? isDefault = null,
+    Object? isFeatured = null,
+    Object? isPromoted = null,
+    Object? tag = freezed,
     Object? fixedPrice = null,
     Object? price = freezed,
   }) {
@@ -92,6 +103,18 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
           ? _value.isDefault
           : isDefault // ignore: cast_nullable_to_non_nullable
               as bool,
+      isFeatured: null == isFeatured
+          ? _value.isFeatured
+          : isFeatured // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isPromoted: null == isPromoted
+          ? _value.isPromoted
+          : isPromoted // ignore: cast_nullable_to_non_nullable
+              as bool,
+      tag: freezed == tag
+          ? _value.tag
+          : tag // ignore: cast_nullable_to_non_nullable
+              as ProductTag?,
       fixedPrice: null == fixedPrice
           ? _value.fixedPrice
           : fixedPrice // ignore: cast_nullable_to_non_nullable
@@ -105,10 +128,10 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
 }
 
 /// @nodoc
-abstract class _$$_ProductCopyWith<$Res> implements $ProductCopyWith<$Res> {
-  factory _$$_ProductCopyWith(
-          _$_Product value, $Res Function(_$_Product) then) =
-      __$$_ProductCopyWithImpl<$Res>;
+abstract class _$$ProductImplCopyWith<$Res> implements $ProductCopyWith<$Res> {
+  factory _$$ProductImplCopyWith(
+          _$ProductImpl value, $Res Function(_$ProductImpl) then) =
+      __$$ProductImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -117,15 +140,19 @@ abstract class _$$_ProductCopyWith<$Res> implements $ProductCopyWith<$Res> {
       String name,
       String description,
       @JsonKey(name: "default") bool isDefault,
+      @JsonKey(name: "featured") bool isFeatured,
+      @JsonKey(name: "promoted") bool isPromoted,
+      ProductTag? tag,
       @JsonKey(name: "fixed_price") bool fixedPrice,
       int? price});
 }
 
 /// @nodoc
-class __$$_ProductCopyWithImpl<$Res>
-    extends _$ProductCopyWithImpl<$Res, _$_Product>
-    implements _$$_ProductCopyWith<$Res> {
-  __$$_ProductCopyWithImpl(_$_Product _value, $Res Function(_$_Product) _then)
+class __$$ProductImplCopyWithImpl<$Res>
+    extends _$ProductCopyWithImpl<$Res, _$ProductImpl>
+    implements _$$ProductImplCopyWith<$Res> {
+  __$$ProductImplCopyWithImpl(
+      _$ProductImpl _value, $Res Function(_$ProductImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -136,10 +163,13 @@ class __$$_ProductCopyWithImpl<$Res>
     Object? name = null,
     Object? description = null,
     Object? isDefault = null,
+    Object? isFeatured = null,
+    Object? isPromoted = null,
+    Object? tag = freezed,
     Object? fixedPrice = null,
     Object? price = freezed,
   }) {
-    return _then(_$_Product(
+    return _then(_$ProductImpl(
       uuid: null == uuid
           ? _value.uuid
           : uuid // ignore: cast_nullable_to_non_nullable
@@ -160,6 +190,18 @@ class __$$_ProductCopyWithImpl<$Res>
           ? _value.isDefault
           : isDefault // ignore: cast_nullable_to_non_nullable
               as bool,
+      isFeatured: null == isFeatured
+          ? _value.isFeatured
+          : isFeatured // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isPromoted: null == isPromoted
+          ? _value.isPromoted
+          : isPromoted // ignore: cast_nullable_to_non_nullable
+              as bool,
+      tag: freezed == tag
+          ? _value.tag
+          : tag // ignore: cast_nullable_to_non_nullable
+              as ProductTag?,
       fixedPrice: null == fixedPrice
           ? _value.fixedPrice
           : fixedPrice // ignore: cast_nullable_to_non_nullable
@@ -174,18 +216,21 @@ class __$$_ProductCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Product implements _Product {
-  const _$_Product(
+class _$ProductImpl implements _Product {
+  const _$ProductImpl(
       {this.uuid = "",
       this.color = "",
       this.name = "",
       this.description = "",
       @JsonKey(name: "default") this.isDefault = false,
+      @JsonKey(name: "featured") this.isFeatured = false,
+      @JsonKey(name: "promoted") this.isPromoted = false,
+      this.tag,
       @JsonKey(name: "fixed_price") this.fixedPrice = true,
       this.price = null});
 
-  factory _$_Product.fromJson(Map<String, dynamic> json) =>
-      _$$_ProductFromJson(json);
+  factory _$ProductImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ProductImplFromJson(json);
 
   @override
   @JsonKey()
@@ -203,6 +248,14 @@ class _$_Product implements _Product {
   @JsonKey(name: "default")
   final bool isDefault;
   @override
+  @JsonKey(name: "featured")
+  final bool isFeatured;
+  @override
+  @JsonKey(name: "promoted")
+  final bool isPromoted;
+  @override
+  final ProductTag? tag;
+  @override
   @JsonKey(name: "fixed_price")
   final bool fixedPrice;
   @override
@@ -211,14 +264,14 @@ class _$_Product implements _Product {
 
   @override
   String toString() {
-    return 'Product(uuid: $uuid, color: $color, name: $name, description: $description, isDefault: $isDefault, fixedPrice: $fixedPrice, price: $price)';
+    return 'Product(uuid: $uuid, color: $color, name: $name, description: $description, isDefault: $isDefault, isFeatured: $isFeatured, isPromoted: $isPromoted, tag: $tag, fixedPrice: $fixedPrice, price: $price)';
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Product &&
+            other is _$ProductImpl &&
             (identical(other.uuid, uuid) || other.uuid == uuid) &&
             (identical(other.color, color) || other.color == color) &&
             (identical(other.name, name) || other.name == name) &&
@@ -226,6 +279,11 @@ class _$_Product implements _Product {
                 other.description == description) &&
             (identical(other.isDefault, isDefault) ||
                 other.isDefault == isDefault) &&
+            (identical(other.isFeatured, isFeatured) ||
+                other.isFeatured == isFeatured) &&
+            (identical(other.isPromoted, isPromoted) ||
+                other.isPromoted == isPromoted) &&
+            (identical(other.tag, tag) || other.tag == tag) &&
             (identical(other.fixedPrice, fixedPrice) ||
                 other.fixedPrice == fixedPrice) &&
             (identical(other.price, price) || other.price == price));
@@ -234,17 +292,17 @@ class _$_Product implements _Product {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, uuid, color, name, description,
-      isDefault, fixedPrice, price);
+      isDefault, isFeatured, isPromoted, tag, fixedPrice, price);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ProductCopyWith<_$_Product> get copyWith =>
-      __$$_ProductCopyWithImpl<_$_Product>(this, _$identity);
+  _$$ProductImplCopyWith<_$ProductImpl> get copyWith =>
+      __$$ProductImplCopyWithImpl<_$ProductImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ProductToJson(
+    return _$$ProductImplToJson(
       this,
     );
   }
@@ -257,10 +315,13 @@ abstract class _Product implements Product {
       final String name,
       final String description,
       @JsonKey(name: "default") final bool isDefault,
+      @JsonKey(name: "featured") final bool isFeatured,
+      @JsonKey(name: "promoted") final bool isPromoted,
+      final ProductTag? tag,
       @JsonKey(name: "fixed_price") final bool fixedPrice,
-      final int? price}) = _$_Product;
+      final int? price}) = _$ProductImpl;
 
-  factory _Product.fromJson(Map<String, dynamic> json) = _$_Product.fromJson;
+  factory _Product.fromJson(Map<String, dynamic> json) = _$ProductImpl.fromJson;
 
   @override
   String get uuid;
@@ -274,12 +335,20 @@ abstract class _Product implements Product {
   @JsonKey(name: "default")
   bool get isDefault;
   @override
+  @JsonKey(name: "featured")
+  bool get isFeatured;
+  @override
+  @JsonKey(name: "promoted")
+  bool get isPromoted;
+  @override
+  ProductTag? get tag;
+  @override
   @JsonKey(name: "fixed_price")
   bool get fixedPrice;
   @override
   int? get price;
   @override
   @JsonKey(ignore: true)
-  _$$_ProductCopyWith<_$_Product> get copyWith =>
+  _$$ProductImplCopyWith<_$ProductImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

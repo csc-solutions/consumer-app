@@ -6,16 +6,16 @@ part of 'api_result.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ApiResult<T> _$$_ApiResultFromJson<T>(
+_$ApiResultImpl<T> _$$ApiResultImplFromJson<T>(
   Map<String, dynamic> json,
   T Function(Object? json) fromJsonT,
 ) =>
-    _$_ApiResult<T>(
+    _$ApiResultImpl<T>(
       data: _$nullableGenericFromJson(json['data'], fromJsonT),
     );
 
-Map<String, dynamic> _$$_ApiResultToJson<T>(
-  _$_ApiResult<T> instance,
+Map<String, dynamic> _$$ApiResultImplToJson<T>(
+  _$ApiResultImpl<T> instance,
   Object? Function(T value) toJsonT,
 ) =>
     <String, dynamic>{

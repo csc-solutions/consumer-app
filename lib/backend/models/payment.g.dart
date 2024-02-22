@@ -6,7 +6,8 @@ part of 'payment.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Payment _$$_PaymentFromJson(Map<String, dynamic> json) => _$_Payment(
+_$PaymentImpl _$$PaymentImplFromJson(Map<String, dynamic> json) =>
+    _$PaymentImpl(
       uuid: json['uuid'] as String? ?? "",
       status: $enumDecodeNullable(_$PaymentStatusEnumEnumMap, json['status']) ??
           PaymentStatusEnum.draft,
@@ -31,7 +32,7 @@ _$_Payment _$$_PaymentFromJson(Map<String, dynamic> json) => _$_Payment(
           : DateTime.parse(json['updated_at'] as String),
     );
 
-Map<String, dynamic> _$$_PaymentToJson(_$_Payment instance) =>
+Map<String, dynamic> _$$PaymentImplToJson(_$PaymentImpl instance) =>
     <String, dynamic>{
       'uuid': instance.uuid,
       'status': _$PaymentStatusEnumEnumMap[instance.status]!,

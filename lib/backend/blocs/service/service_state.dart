@@ -13,5 +13,3 @@ sealed class ServiceState with _$ServiceState {
   factory ServiceState.fromJson(Map<String, dynamic> json) =>
       _$ServiceStateFromJson(json);
 }
-
-

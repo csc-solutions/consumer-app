@@ -12,7 +12,7 @@ part of 'payment_form.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$PaymentForm {
@@ -72,11 +72,11 @@ class _$PaymentFormCopyWithImpl<$Res, $Val extends PaymentForm>
 }
 
 /// @nodoc
-abstract class _$$_PaymentFormCopyWith<$Res>
+abstract class _$$PaymentFormImplCopyWith<$Res>
     implements $PaymentFormCopyWith<$Res> {
-  factory _$$_PaymentFormCopyWith(
-          _$_PaymentForm value, $Res Function(_$_PaymentForm) then) =
-      __$$_PaymentFormCopyWithImpl<$Res>;
+  factory _$$PaymentFormImplCopyWith(
+          _$PaymentFormImpl value, $Res Function(_$PaymentFormImpl) then) =
+      __$$PaymentFormImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -86,11 +86,11 @@ abstract class _$$_PaymentFormCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_PaymentFormCopyWithImpl<$Res>
-    extends _$PaymentFormCopyWithImpl<$Res, _$_PaymentForm>
-    implements _$$_PaymentFormCopyWith<$Res> {
-  __$$_PaymentFormCopyWithImpl(
-      _$_PaymentForm _value, $Res Function(_$_PaymentForm) _then)
+class __$$PaymentFormImplCopyWithImpl<$Res>
+    extends _$PaymentFormCopyWithImpl<$Res, _$PaymentFormImpl>
+    implements _$$PaymentFormImplCopyWith<$Res> {
+  __$$PaymentFormImplCopyWithImpl(
+      _$PaymentFormImpl _value, $Res Function(_$PaymentFormImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -100,7 +100,7 @@ class __$$_PaymentFormCopyWithImpl<$Res>
     Object? destinationInput = null,
     Object? momoNumberInput = null,
   }) {
-    return _then(_$_PaymentForm(
+    return _then(_$PaymentFormImpl(
       amountInput: null == amountInput
           ? _value.amountInput
           : amountInput // ignore: cast_nullable_to_non_nullable
@@ -119,8 +119,8 @@ class __$$_PaymentFormCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_PaymentForm extends _PaymentForm {
-  const _$_PaymentForm(
+class _$PaymentFormImpl extends _PaymentForm {
+  const _$PaymentFormImpl(
       {this.amountInput = const AmountInput.pure(),
       this.destinationInput = const DestinationInput.pure(),
       this.momoNumberInput = const MomoNumberInput.pure()})
@@ -142,10 +142,10 @@ class _$_PaymentForm extends _PaymentForm {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PaymentForm &&
+            other is _$PaymentFormImpl &&
             (identical(other.amountInput, amountInput) ||
                 other.amountInput == amountInput) &&
             (identical(other.destinationInput, destinationInput) ||
@@ -161,15 +161,15 @@ class _$_PaymentForm extends _PaymentForm {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PaymentFormCopyWith<_$_PaymentForm> get copyWith =>
-      __$$_PaymentFormCopyWithImpl<_$_PaymentForm>(this, _$identity);
+  _$$PaymentFormImplCopyWith<_$PaymentFormImpl> get copyWith =>
+      __$$PaymentFormImplCopyWithImpl<_$PaymentFormImpl>(this, _$identity);
 }
 
 abstract class _PaymentForm extends PaymentForm {
   const factory _PaymentForm(
       {final AmountInput amountInput,
       final DestinationInput destinationInput,
-      final MomoNumberInput momoNumberInput}) = _$_PaymentForm;
+      final MomoNumberInput momoNumberInput}) = _$PaymentFormImpl;
   const _PaymentForm._() : super._();
 
   @override
@@ -180,6 +180,6 @@ abstract class _PaymentForm extends PaymentForm {
   MomoNumberInput get momoNumberInput;
   @override
   @JsonKey(ignore: true)
-  _$$_PaymentFormCopyWith<_$_PaymentForm> get copyWith =>
+  _$$PaymentFormImplCopyWith<_$PaymentFormImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

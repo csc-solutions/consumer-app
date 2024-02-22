@@ -28,15 +28,14 @@ class StatusScreen extends StatelessWidget implements AutoRouteWrapper {
                   host: "wa.me",
                   path: Config.supportNumber(),
                   queryParameters: {
-                    "text":
-                        "Je vous contacte par rapport au paiement #${state.payment.code}"
+                    "text": l(context).iAmContactingAboutPayment(payment.code)
                   });
               launchUrl(uri);
             },
             child: const Icon(Icons.support_agent),
           ),
           appBar: AppBar(
-            title: const Text("Paiement"),
+            title: Text(l(context).payment),
           ),
           body: ListView(
             children: [
@@ -45,7 +44,7 @@ class StatusScreen extends StatelessWidget implements AutoRouteWrapper {
               Padding(
                 padding: const EdgeInsets.only(bottom: 8.0),
                 child: ListTile(
-                  title: const Text("Status du paiement"),
+                  title: Text(l(context).paymentStatus),
                   subtitle: Text(
                     state.payment.status.detail.title,
                     style: TextStyle(
@@ -62,9 +61,9 @@ class StatusScreen extends StatelessWidget implements AutoRouteWrapper {
                     text: TextSpan(
                         style: Theme.of(context).textTheme.bodyMedium,
                         children: [
-                      const TextSpan(
-                          text: "Achat de: ",
-                          style: TextStyle(fontWeight: FontWeight.bold)),
+                      TextSpan(
+                          text: "${l(context).purchaseOf}: ",
+                          style: const TextStyle(fontWeight: FontWeight.bold)),
                       TextSpan(text: state.payment.product.name),
                     ])),
               ),
@@ -75,9 +74,9 @@ class StatusScreen extends StatelessWidget implements AutoRouteWrapper {
                     text: TextSpan(
                         style: Theme.of(context).textTheme.bodyMedium,
                         children: [
-                      const TextSpan(
-                          text: "Vers: ",
-                          style: TextStyle(fontWeight: FontWeight.bold)),
+                      TextSpan(
+                          text: "${l(context).to}: ",
+                          style: const TextStyle(fontWeight: FontWeight.bold)),
                       TextSpan(text: state.payment.creditDestination),
                     ])),
               ),
@@ -88,15 +87,15 @@ class StatusScreen extends StatelessWidget implements AutoRouteWrapper {
                     text: TextSpan(
                         style: Theme.of(context).textTheme.bodyMedium,
                         children: [
-                      const TextSpan(
-                          text: "Montant: ",
-                          style: TextStyle(fontWeight: FontWeight.bold)),
+                      TextSpan(
+                          text: "${l(context).amount}: ",
+                          style: const TextStyle(fontWeight: FontWeight.bold)),
                       TextSpan(text: formatAmount(state.payment.amount)),
                     ])),
               ),
               const Divider(),
               ListTile(
-                title: const Text("Code du paiement"),
+                title: Text(l(context).paymentCode),
                 subtitle: Text(state.payment.code),
                 trailing: IconButton(
                   icon: const Icon(Icons.copy),
@@ -134,7 +133,7 @@ class StatusScreen extends StatelessWidget implements AutoRouteWrapper {
                         context.router.popUntilRoot();
                       },
                       icon: const Icon(Icons.send),
-                      label: const Text("Retour à l'acceuil")),
+                      label: Text(l(context).backToHome)),
                 )
             ],
           ),

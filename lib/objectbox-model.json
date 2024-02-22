@@ -109,7 +109,7 @@
     },
     {
       "id": "4:5190749310215474288",
-      "lastPropertyId": "8:7345387511162925630",
+      "lastPropertyId": "11:2106268387231355317",
       "name": "PaymentLog",
       "properties": [
         {
@@ -151,6 +151,21 @@
         {
           "id": "8:7345387511162925630",
           "name": "productName",
+          "type": 9
+        },
+        {
+          "id": "9:42719889324564609",
+          "name": "serviceImage",
+          "type": 9
+        },
+        {
+          "id": "10:1663519098743802921",
+          "name": "serviceUuid",
+          "type": 9
+        },
+        {
+          "id": "11:2106268387231355317",
+          "name": "productUuid",
           "type": 9
         }
       ],

@@ -1,4 +1,5 @@
 import 'package:fleet_consumer/backend/models/product.dart';
+import 'package:fleet_consumer/backend/models/product_tag.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'service.freezed.dart';
@@ -7,6 +8,7 @@ part 'service.g.dart';
 @Freezed()
 class Service with _$Service {
   const factory Service({
+    @Default("") String uuid,
     @Default("") String image,
     @Default("") String name,
     @Default("") String description,
@@ -23,6 +25,15 @@ class Service with _$Service {
     @JsonKey(name: "form_input_regex") @Default("") String formInputRegex,
   }) = _Service;
 
+  const Service._();
   factory Service.fromJson(Map<String, dynamic> json) =>
       _$ServiceFromJson(json);
+
+  List<Product> productTagged(ProductTag tag) {
+    return products.where((element) => element.tag == tag).toList();
+  }
+
+  Service get light {
+    return copyWith(products: []);
+  }
 }

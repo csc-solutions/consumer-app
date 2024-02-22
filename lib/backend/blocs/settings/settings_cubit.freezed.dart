@@ -12,7 +12,7 @@ part of 'settings_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 SettingsState _$SettingsStateFromJson(Map<String, dynamic> json) {
   return _SettingsState.fromJson(json);
@@ -68,22 +68,22 @@ class _$SettingsStateCopyWithImpl<$Res, $Val extends SettingsState>
 }
 
 /// @nodoc
-abstract class _$$_SettingsStateCopyWith<$Res>
+abstract class _$$SettingsStateImplCopyWith<$Res>
     implements $SettingsStateCopyWith<$Res> {
-  factory _$$_SettingsStateCopyWith(
-          _$_SettingsState value, $Res Function(_$_SettingsState) then) =
-      __$$_SettingsStateCopyWithImpl<$Res>;
+  factory _$$SettingsStateImplCopyWith(
+          _$SettingsStateImpl value, $Res Function(_$SettingsStateImpl) then) =
+      __$$SettingsStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String privateKey, String publicKey});
 }
 
 /// @nodoc
-class __$$_SettingsStateCopyWithImpl<$Res>
-    extends _$SettingsStateCopyWithImpl<$Res, _$_SettingsState>
-    implements _$$_SettingsStateCopyWith<$Res> {
-  __$$_SettingsStateCopyWithImpl(
-      _$_SettingsState _value, $Res Function(_$_SettingsState) _then)
+class __$$SettingsStateImplCopyWithImpl<$Res>
+    extends _$SettingsStateCopyWithImpl<$Res, _$SettingsStateImpl>
+    implements _$$SettingsStateImplCopyWith<$Res> {
+  __$$SettingsStateImplCopyWithImpl(
+      _$SettingsStateImpl _value, $Res Function(_$SettingsStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -92,7 +92,7 @@ class __$$_SettingsStateCopyWithImpl<$Res>
     Object? privateKey = null,
     Object? publicKey = null,
   }) {
-    return _then(_$_SettingsState(
+    return _then(_$SettingsStateImpl(
       privateKey: null == privateKey
           ? _value.privateKey
           : privateKey // ignore: cast_nullable_to_non_nullable
@@ -107,11 +107,11 @@ class __$$_SettingsStateCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_SettingsState implements _SettingsState {
-  _$_SettingsState({this.privateKey = "", this.publicKey = ""});
+class _$SettingsStateImpl implements _SettingsState {
+  _$SettingsStateImpl({this.privateKey = "", this.publicKey = ""});
 
-  factory _$_SettingsState.fromJson(Map<String, dynamic> json) =>
-      _$$_SettingsStateFromJson(json);
+  factory _$SettingsStateImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SettingsStateImplFromJson(json);
 
   @override
   @JsonKey()
@@ -126,10 +126,10 @@ class _$_SettingsState implements _SettingsState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_SettingsState &&
+            other is _$SettingsStateImpl &&
             (identical(other.privateKey, privateKey) ||
                 other.privateKey == privateKey) &&
             (identical(other.publicKey, publicKey) ||
@@ -143,12 +143,12 @@ class _$_SettingsState implements _SettingsState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SettingsStateCopyWith<_$_SettingsState> get copyWith =>
-      __$$_SettingsStateCopyWithImpl<_$_SettingsState>(this, _$identity);
+  _$$SettingsStateImplCopyWith<_$SettingsStateImpl> get copyWith =>
+      __$$SettingsStateImplCopyWithImpl<_$SettingsStateImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_SettingsStateToJson(
+    return _$$SettingsStateImplToJson(
       this,
     );
   }
@@ -156,10 +156,10 @@ class _$_SettingsState implements _SettingsState {
 
 abstract class _SettingsState implements SettingsState {
   factory _SettingsState({final String privateKey, final String publicKey}) =
-      _$_SettingsState;
+      _$SettingsStateImpl;
 
   factory _SettingsState.fromJson(Map<String, dynamic> json) =
-      _$_SettingsState.fromJson;
+      _$SettingsStateImpl.fromJson;
 
   @override
   String get privateKey;
@@ -167,6 +167,6 @@ abstract class _SettingsState implements SettingsState {
   String get publicKey;
   @override
   @JsonKey(ignore: true)
-  _$$_SettingsStateCopyWith<_$_SettingsState> get copyWith =>
+  _$$SettingsStateImplCopyWith<_$SettingsStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

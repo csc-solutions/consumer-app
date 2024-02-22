@@ -40,7 +40,10 @@ class Payment with _$Payment {
         serviceName: service.name,
         productName: product.name,
         amount: amount,
+        serviceImage: service.image,
         creditDestination: creditDestination,
+        serviceUuid: service.uuid,
+        productUuid: product.uuid,
         debitDestination: debitDestination,
         createdAt: createdAt);
   }

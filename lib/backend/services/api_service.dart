@@ -20,6 +20,7 @@ class ApiService {
 
   Future<List<Service>> getServices() {
     return _client.get("/service").then((res) {
+      
       return ApiResult.fromJson(
           res.data,
           (v) => List<Service>.from(

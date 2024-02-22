@@ -6,7 +6,9 @@ part of 'service.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Service _$$_ServiceFromJson(Map<String, dynamic> json) => _$_Service(
+_$ServiceImpl _$$ServiceImplFromJson(Map<String, dynamic> json) =>
+    _$ServiceImpl(
+      uuid: json['uuid'] as String? ?? "",
       image: json['image'] as String? ?? "",
       name: json['name'] as String? ?? "",
       description: json['description'] as String? ?? "",
@@ -24,8 +26,9 @@ _$_Service _$$_ServiceFromJson(Map<String, dynamic> json) => _$_Service(
       formInputRegex: json['form_input_regex'] as String? ?? "",
     );
 
-Map<String, dynamic> _$$_ServiceToJson(_$_Service instance) =>
+Map<String, dynamic> _$$ServiceImplToJson(_$ServiceImpl instance) =>
     <String, dynamic>{
+      'uuid': instance.uuid,
       'image': instance.image,
       'name': instance.name,
       'description': instance.description,

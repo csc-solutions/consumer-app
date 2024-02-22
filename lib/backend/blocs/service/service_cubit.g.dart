@@ -6,8 +6,8 @@ part of 'service_cubit.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ServiceState _$$_ServiceStateFromJson(Map<String, dynamic> json) =>
-    _$_ServiceState(
+_$ServiceStateImpl _$$ServiceStateImplFromJson(Map<String, dynamic> json) =>
+    _$ServiceStateImpl(
       services: (json['services'] as List<dynamic>?)
               ?.map((e) => Service.fromJson(e as Map<String, dynamic>))
               .toList() ??
@@ -16,7 +16,7 @@ _$_ServiceState _$$_ServiceStateFromJson(Map<String, dynamic> json) =>
           ServiceStatus.loading,
     );
 
-Map<String, dynamic> _$$_ServiceStateToJson(_$_ServiceState instance) =>
+Map<String, dynamic> _$$ServiceStateImplToJson(_$ServiceStateImpl instance) =>
     <String, dynamic>{
       'services': instance.services,
       'status': _$ServiceStatusEnumMap[instance.status]!,

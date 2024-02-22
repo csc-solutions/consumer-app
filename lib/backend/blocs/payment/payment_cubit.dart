@@ -25,16 +25,17 @@ class PaymentCubit extends Cubit<PaymentState> {
   PaymentCubit(this.apiService, this.store, this.service, this.product)
       : super(PaymentState(
             form: PaymentForm(
-              
                 destinationInput:
                     DestinationInput.pure(regex: service.formInputRegex),
                 amountInput: AmountInput.pure(
-                  min: service.minAmount,
-                  max: service.maxAmount,
-                  amount: product.fixedPrice ? product.price : null
-                ))));
+                    min: service.minAmount,
+                    max: service.maxAmount,
+                    amount: product.fixedPrice ? product.price : null))));
 
   onAmountChanged(int amount) {
+    if (product.fixedPrice) {
+      return;
+    }
     emit(state.copyWith(
         status: FormzSubmissionStatus.initial,
         form: state.form.copyWith(

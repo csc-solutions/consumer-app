@@ -6,15 +6,15 @@ part of 'initiate_transaction_result.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_InitiateTransactionResult _$$_InitiateTransactionResultFromJson(
+_$InitiateTransactionResultImpl _$$InitiateTransactionResultImplFromJson(
         Map<String, dynamic> json) =>
-    _$_InitiateTransactionResult(
+    _$InitiateTransactionResultImpl(
       transaction:
           Transaction.fromJson(json['transaction'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$_InitiateTransactionResultToJson(
-        _$_InitiateTransactionResult instance) =>
+Map<String, dynamic> _$$InitiateTransactionResultImplToJson(
+        _$InitiateTransactionResultImpl instance) =>
     <String, dynamic>{
       'transaction': instance.transaction,
     };

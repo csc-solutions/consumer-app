@@ -6,8 +6,14 @@ class PaymentLog {
   int id;
   String code;
   int amount;
+  
   String serviceName;
+  String serviceUuid;
+  String serviceImage;
+
   String productName;
+  String productUuid;
+  
   String creditDestination;
   String debitDestination;
 
@@ -19,6 +25,9 @@ class PaymentLog {
     required this.code,
     this.amount = 0,
     this.serviceName = "",
+    this.serviceUuid = "",
+    this.productUuid = "",
+    this.serviceImage = "",
     this.productName = "",
     this.creditDestination = "",
     this.debitDestination = "",

@@ -12,7 +12,7 @@ part of 'payment_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$PaymentState {
@@ -88,11 +88,11 @@ class _$PaymentStateCopyWithImpl<$Res, $Val extends PaymentState>
 }
 
 /// @nodoc
-abstract class _$$_PaymentStateCopyWith<$Res>
+abstract class _$$PaymentStateImplCopyWith<$Res>
     implements $PaymentStateCopyWith<$Res> {
-  factory _$$_PaymentStateCopyWith(
-          _$_PaymentState value, $Res Function(_$_PaymentState) then) =
-      __$$_PaymentStateCopyWithImpl<$Res>;
+  factory _$$PaymentStateImplCopyWith(
+          _$PaymentStateImpl value, $Res Function(_$PaymentStateImpl) then) =
+      __$$PaymentStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({FormzSubmissionStatus status, PaymentForm form, Payment payment});
@@ -104,11 +104,11 @@ abstract class _$$_PaymentStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_PaymentStateCopyWithImpl<$Res>
-    extends _$PaymentStateCopyWithImpl<$Res, _$_PaymentState>
-    implements _$$_PaymentStateCopyWith<$Res> {
-  __$$_PaymentStateCopyWithImpl(
-      _$_PaymentState _value, $Res Function(_$_PaymentState) _then)
+class __$$PaymentStateImplCopyWithImpl<$Res>
+    extends _$PaymentStateCopyWithImpl<$Res, _$PaymentStateImpl>
+    implements _$$PaymentStateImplCopyWith<$Res> {
+  __$$PaymentStateImplCopyWithImpl(
+      _$PaymentStateImpl _value, $Res Function(_$PaymentStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -118,7 +118,7 @@ class __$$_PaymentStateCopyWithImpl<$Res>
     Object? form = null,
     Object? payment = null,
   }) {
-    return _then(_$_PaymentState(
+    return _then(_$PaymentStateImpl(
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -137,8 +137,8 @@ class __$$_PaymentStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_PaymentState implements _PaymentState {
-  _$_PaymentState(
+class _$PaymentStateImpl implements _PaymentState {
+  _$PaymentStateImpl(
       {this.status = FormzSubmissionStatus.initial,
       this.form = const PaymentForm(),
       this.payment = const Payment()});
@@ -159,10 +159,10 @@ class _$_PaymentState implements _PaymentState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PaymentState &&
+            other is _$PaymentStateImpl &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.form, form) || other.form == form) &&
             (identical(other.payment, payment) || other.payment == payment));
@@ -174,15 +174,15 @@ class _$_PaymentState implements _PaymentState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PaymentStateCopyWith<_$_PaymentState> get copyWith =>
-      __$$_PaymentStateCopyWithImpl<_$_PaymentState>(this, _$identity);
+  _$$PaymentStateImplCopyWith<_$PaymentStateImpl> get copyWith =>
+      __$$PaymentStateImplCopyWithImpl<_$PaymentStateImpl>(this, _$identity);
 }
 
 abstract class _PaymentState implements PaymentState {
   factory _PaymentState(
       {final FormzSubmissionStatus status,
       final PaymentForm form,
-      final Payment payment}) = _$_PaymentState;
+      final Payment payment}) = _$PaymentStateImpl;
 
   @override
   FormzSubmissionStatus get status;
@@ -192,6 +192,6 @@ abstract class _PaymentState implements PaymentState {
   Payment get payment;
   @override
   @JsonKey(ignore: true)
-  _$$_PaymentStateCopyWith<_$_PaymentState> get copyWith =>
+  _$$PaymentStateImplCopyWith<_$PaymentStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

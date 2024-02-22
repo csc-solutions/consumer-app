@@ -6,8 +6,8 @@ part of 'transaction.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Transaction _$$_TransactionFromJson(Map<String, dynamic> json) =>
-    _$_Transaction(
+_$TransactionImpl _$$TransactionImplFromJson(Map<String, dynamic> json) =>
+    _$TransactionImpl(
       amountReceived: json['amount_received'] as int?,
       id: json['id'] as int? ?? 0,
       amount: json['amount'] as int,
@@ -31,7 +31,7 @@ _$_Transaction _$$_TransactionFromJson(Map<String, dynamic> json) =>
       customerPhone: json['customer_phone'] as String?,
     );
 
-Map<String, dynamic> _$$_TransactionToJson(_$_Transaction instance) =>
+Map<String, dynamic> _$$TransactionImplToJson(_$TransactionImpl instance) =>
     <String, dynamic>{
       'amount_received': instance.amountReceived,
       'id': instance.id,

@@ -12,7 +12,7 @@ part of 'service.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 Service _$ServiceFromJson(Map<String, dynamic> json) {
   return _Service.fromJson(json);
@@ -20,6 +20,7 @@ Service _$ServiceFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Service {
+  String get uuid => throw _privateConstructorUsedError;
   String get image => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
@@ -49,7 +50,8 @@ abstract class $ServiceCopyWith<$Res> {
       _$ServiceCopyWithImpl<$Res, Service>;
   @useResult
   $Res call(
-      {String image,
+      {String uuid,
+      String image,
       String name,
       String description,
       String kind,
@@ -76,6 +78,7 @@ class _$ServiceCopyWithImpl<$Res, $Val extends Service>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? uuid = null,
     Object? image = null,
     Object? name = null,
     Object? description = null,
@@ -90,6 +93,10 @@ class _$ServiceCopyWithImpl<$Res, $Val extends Service>
     Object? formInputRegex = null,
   }) {
     return _then(_value.copyWith(
+      uuid: null == uuid
+          ? _value.uuid
+          : uuid // ignore: cast_nullable_to_non_nullable
+              as String,
       image: null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -143,14 +150,15 @@ class _$ServiceCopyWithImpl<$Res, $Val extends Service>
 }
 
 /// @nodoc
-abstract class _$$_ServiceCopyWith<$Res> implements $ServiceCopyWith<$Res> {
-  factory _$$_ServiceCopyWith(
-          _$_Service value, $Res Function(_$_Service) then) =
-      __$$_ServiceCopyWithImpl<$Res>;
+abstract class _$$ServiceImplCopyWith<$Res> implements $ServiceCopyWith<$Res> {
+  factory _$$ServiceImplCopyWith(
+          _$ServiceImpl value, $Res Function(_$ServiceImpl) then) =
+      __$$ServiceImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {String image,
+      {String uuid,
+      String image,
       String name,
       String description,
       String kind,
@@ -165,15 +173,17 @@ abstract class _$$_ServiceCopyWith<$Res> implements $ServiceCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_ServiceCopyWithImpl<$Res>
-    extends _$ServiceCopyWithImpl<$Res, _$_Service>
-    implements _$$_ServiceCopyWith<$Res> {
-  __$$_ServiceCopyWithImpl(_$_Service _value, $Res Function(_$_Service) _then)
+class __$$ServiceImplCopyWithImpl<$Res>
+    extends _$ServiceCopyWithImpl<$Res, _$ServiceImpl>
+    implements _$$ServiceImplCopyWith<$Res> {
+  __$$ServiceImplCopyWithImpl(
+      _$ServiceImpl _value, $Res Function(_$ServiceImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? uuid = null,
     Object? image = null,
     Object? name = null,
     Object? description = null,
@@ -187,7 +197,11 @@ class __$$_ServiceCopyWithImpl<$Res>
     Object? formInputPlaceholder = null,
     Object? formInputRegex = null,
   }) {
-    return _then(_$_Service(
+    return _then(_$ServiceImpl(
+      uuid: null == uuid
+          ? _value.uuid
+          : uuid // ignore: cast_nullable_to_non_nullable
+              as String,
       image: null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -242,9 +256,10 @@ class __$$_ServiceCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Service implements _Service {
-  const _$_Service(
-      {this.image = "",
+class _$ServiceImpl extends _Service {
+  const _$ServiceImpl(
+      {this.uuid = "",
+      this.image = "",
       this.name = "",
       this.description = "",
       this.kind = "",
@@ -256,11 +271,15 @@ class _$_Service implements _Service {
       @JsonKey(name: "form_input_label") this.formInputLabel = "",
       @JsonKey(name: "form_input_placeholder") this.formInputPlaceholder = "",
       @JsonKey(name: "form_input_regex") this.formInputRegex = ""})
-      : _products = products;
+      : _products = products,
+        super._();
 
-  factory _$_Service.fromJson(Map<String, dynamic> json) =>
-      _$$_ServiceFromJson(json);
+  factory _$ServiceImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ServiceImplFromJson(json);
 
+  @override
+  @JsonKey()
+  final String uuid;
   @override
   @JsonKey()
   final String image;
@@ -306,14 +325,15 @@ class _$_Service implements _Service {
 
   @override
   String toString() {
-    return 'Service(image: $image, name: $name, description: $description, kind: $kind, enabled: $enabled, products: $products, minAmount: $minAmount, maxAmount: $maxAmount, amount: $amount, formInputLabel: $formInputLabel, formInputPlaceholder: $formInputPlaceholder, formInputRegex: $formInputRegex)';
+    return 'Service(uuid: $uuid, image: $image, name: $name, description: $description, kind: $kind, enabled: $enabled, products: $products, minAmount: $minAmount, maxAmount: $maxAmount, amount: $amount, formInputLabel: $formInputLabel, formInputPlaceholder: $formInputPlaceholder, formInputRegex: $formInputRegex)';
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Service &&
+            other is _$ServiceImpl &&
+            (identical(other.uuid, uuid) || other.uuid == uuid) &&
             (identical(other.image, image) || other.image == image) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.description, description) ||
@@ -338,6 +358,7 @@ class _$_Service implements _Service {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      uuid,
       image,
       name,
       description,
@@ -354,39 +375,40 @@ class _$_Service implements _Service {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ServiceCopyWith<_$_Service> get copyWith =>
-      __$$_ServiceCopyWithImpl<_$_Service>(this, _$identity);
+  _$$ServiceImplCopyWith<_$ServiceImpl> get copyWith =>
+      __$$ServiceImplCopyWithImpl<_$ServiceImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ServiceToJson(
+    return _$$ServiceImplToJson(
       this,
     );
   }
 }
 
-abstract class _Service implements Service {
+abstract class _Service extends Service {
   const factory _Service(
-      {final String image,
-      final String name,
-      final String description,
-      final String kind,
-      final bool enabled,
-      final List<Product> products,
-      @JsonKey(name: "min_amount")
-          final int? minAmount,
-      @JsonKey(name: "max_amount")
-          final int? maxAmount,
-      final int? amount,
-      @JsonKey(name: "form_input_label")
-          final String formInputLabel,
-      @JsonKey(name: "form_input_placeholder")
+          {final String uuid,
+          final String image,
+          final String name,
+          final String description,
+          final String kind,
+          final bool enabled,
+          final List<Product> products,
+          @JsonKey(name: "min_amount") final int? minAmount,
+          @JsonKey(name: "max_amount") final int? maxAmount,
+          final int? amount,
+          @JsonKey(name: "form_input_label") final String formInputLabel,
+          @JsonKey(name: "form_input_placeholder")
           final String formInputPlaceholder,
-      @JsonKey(name: "form_input_regex")
-          final String formInputRegex}) = _$_Service;
+          @JsonKey(name: "form_input_regex") final String formInputRegex}) =
+      _$ServiceImpl;
+  const _Service._() : super._();
 
-  factory _Service.fromJson(Map<String, dynamic> json) = _$_Service.fromJson;
+  factory _Service.fromJson(Map<String, dynamic> json) = _$ServiceImpl.fromJson;
 
+  @override
+  String get uuid;
   @override
   String get image;
   @override
@@ -418,6 +440,6 @@ abstract class _Service implements Service {
   String get formInputRegex;
   @override
   @JsonKey(ignore: true)
-  _$$_ServiceCopyWith<_$_Service> get copyWith =>
+  _$$ServiceImplCopyWith<_$ServiceImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

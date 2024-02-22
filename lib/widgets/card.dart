@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class DataCard extends StatelessWidget {
   final String title;
+  final bool enabled;
   final String secondaryOptionTitle;
   final Function() onSecondaryOptionPressed;
   final String primaryOptionTitle;
@@ -9,6 +10,7 @@ class DataCard extends StatelessWidget {
   final Widget child;
 
   const DataCard({
+    this.enabled = true,
     required this.title,
     required this.onSecondaryOptionPressed,
     required this.secondaryOptionTitle,
@@ -54,7 +56,7 @@ class DataCard extends StatelessWidget {
           Align(
               alignment: Alignment.bottomRight,
               child: FilledButton(
-                  onPressed: onPrimaryOptionPressed,
+                  onPressed: !enabled ? null : onPrimaryOptionPressed,
                   child: Text(primaryOptionTitle)))
         ],
       ),

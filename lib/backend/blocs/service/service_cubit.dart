@@ -1,3 +1,4 @@
+import 'package:fleet_consumer/backend/models/payment_package.dart';
 import 'package:fleet_consumer/backend/models/service.dart';
 import 'package:fleet_consumer/backend/services/api_service.dart';
 import 'package:flutter/material.dart';
@@ -12,9 +13,7 @@ part 'service_state.dart';
 
 class ServiceCubit extends HydratedCubit<ServiceState> {
   final ApiService apiService;
-  ServiceCubit(this.apiService) : super(ServiceState()) {
-    _load();
-  }
+  ServiceCubit(this.apiService) : super(ServiceState()) {}
 
   Future<List<Service>> _load() async {
     emit(state.copyWith(status: ServiceStatus.loading));
@@ -31,6 +30,7 @@ class ServiceCubit extends HydratedCubit<ServiceState> {
     });
   }
 
+  Future<List<Service>> refresh() => _load();
   @override
   ServiceState? fromJson(Map<String, dynamic> json) {
     return ServiceState.fromJson(json);
@@ -39,5 +39,25 @@ class ServiceCubit extends HydratedCubit<ServiceState> {
   @override
   Map<String, dynamic>? toJson(ServiceState state) {
     return state.toJson();
+  }
+
+  List<PaymentPackage> getPromotions() {
+    List<PaymentPackage> promotions = [];
+
+    for (var service in state.services) {
+      for (var product in service.products) {
+        if (product.isPromoted) {
+          promotions.add(PaymentPackage(
+              product: product,
+              service: service.light,
+              featured: product.isFeatured));
+        }
+      }
+    }
+    return promotions;
+  }
+
+  PaymentPackage? getFeaturedPromotion() {
+    return getPromotions().where((element) => element.featured).firstOrNull;
   }
 }

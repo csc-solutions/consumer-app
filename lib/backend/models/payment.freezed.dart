@@ -12,7 +12,7 @@ part of 'payment.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 Payment _$PaymentFromJson(Map<String, dynamic> json) {
   return _Payment.fromJson(json);
@@ -165,10 +165,10 @@ class _$PaymentCopyWithImpl<$Res, $Val extends Payment>
 }
 
 /// @nodoc
-abstract class _$$_PaymentCopyWith<$Res> implements $PaymentCopyWith<$Res> {
-  factory _$$_PaymentCopyWith(
-          _$_Payment value, $Res Function(_$_Payment) then) =
-      __$$_PaymentCopyWithImpl<$Res>;
+abstract class _$$PaymentImplCopyWith<$Res> implements $PaymentCopyWith<$Res> {
+  factory _$$PaymentImplCopyWith(
+          _$PaymentImpl value, $Res Function(_$PaymentImpl) then) =
+      __$$PaymentImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -193,10 +193,11 @@ abstract class _$$_PaymentCopyWith<$Res> implements $PaymentCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_PaymentCopyWithImpl<$Res>
-    extends _$PaymentCopyWithImpl<$Res, _$_Payment>
-    implements _$$_PaymentCopyWith<$Res> {
-  __$$_PaymentCopyWithImpl(_$_Payment _value, $Res Function(_$_Payment) _then)
+class __$$PaymentImplCopyWithImpl<$Res>
+    extends _$PaymentCopyWithImpl<$Res, _$PaymentImpl>
+    implements _$$PaymentImplCopyWith<$Res> {
+  __$$PaymentImplCopyWithImpl(
+      _$PaymentImpl _value, $Res Function(_$PaymentImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -214,7 +215,7 @@ class __$$_PaymentCopyWithImpl<$Res>
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
   }) {
-    return _then(_$_Payment(
+    return _then(_$PaymentImpl(
       uuid: null == uuid
           ? _value.uuid
           : uuid // ignore: cast_nullable_to_non_nullable
@@ -265,8 +266,8 @@ class __$$_PaymentCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Payment extends _Payment {
-  const _$_Payment(
+class _$PaymentImpl extends _Payment {
+  const _$PaymentImpl(
       {this.uuid = "",
       this.status = PaymentStatusEnum.draft,
       this.code = "",
@@ -280,8 +281,8 @@ class _$_Payment extends _Payment {
       @JsonKey(name: "updated_at") this.updatedAt})
       : super._();
 
-  factory _$_Payment.fromJson(Map<String, dynamic> json) =>
-      _$$_PaymentFromJson(json);
+  factory _$PaymentImpl.fromJson(Map<String, dynamic> json) =>
+      _$$PaymentImplFromJson(json);
 
   @override
   @JsonKey()
@@ -323,10 +324,10 @@ class _$_Payment extends _Payment {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Payment &&
+            other is _$PaymentImpl &&
             (identical(other.uuid, uuid) || other.uuid == uuid) &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.code, code) || other.code == code) &&
@@ -364,12 +365,12 @@ class _$_Payment extends _Payment {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PaymentCopyWith<_$_Payment> get copyWith =>
-      __$$_PaymentCopyWithImpl<_$_Payment>(this, _$identity);
+  _$$PaymentImplCopyWith<_$PaymentImpl> get copyWith =>
+      __$$PaymentImplCopyWithImpl<_$PaymentImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_PaymentToJson(
+    return _$$PaymentImplToJson(
       this,
     );
   }
@@ -387,10 +388,10 @@ abstract class _Payment extends Payment {
       final Service service,
       @JsonKey(name: "service_payment") final Service servicePayment,
       @JsonKey(name: "created_at") final DateTime? createdAt,
-      @JsonKey(name: "updated_at") final DateTime? updatedAt}) = _$_Payment;
+      @JsonKey(name: "updated_at") final DateTime? updatedAt}) = _$PaymentImpl;
   const _Payment._() : super._();
 
-  factory _Payment.fromJson(Map<String, dynamic> json) = _$_Payment.fromJson;
+  factory _Payment.fromJson(Map<String, dynamic> json) = _$PaymentImpl.fromJson;
 
   @override
   String get uuid;
@@ -422,6 +423,6 @@ abstract class _Payment extends Payment {
   DateTime? get updatedAt;
   @override
   @JsonKey(ignore: true)
-  _$$_PaymentCopyWith<_$_Payment> get copyWith =>
+  _$$PaymentImplCopyWith<_$PaymentImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

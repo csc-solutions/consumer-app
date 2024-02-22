@@ -10,8 +10,9 @@
 import 'dart:typed_data';
 
 import 'package:flat_buffers/flat_buffers.dart' as fb;
-import 'package:objectbox/internal.dart'; // generated code can access "internal" functionality
-import 'package:objectbox/objectbox.dart';
+import 'package:objectbox/internal.dart'
+    as obx_int; // generated code can access "internal" functionality
+import 'package:objectbox/objectbox.dart' as obx;
 import 'package:objectbox_flutter_libs/objectbox_flutter_libs.dart';
 
 import 'backend/models/payment_log.dart';
@@ -19,160 +20,175 @@ import 'backend/models/transaction.dart';
 
 export 'package:objectbox/objectbox.dart'; // so that callers only have to import this file
 
-final _entities = <ModelEntity>[
-  ModelEntity(
-      id: const IdUid(1, 4618804454351060149),
+final _entities = <obx_int.ModelEntity>[
+  obx_int.ModelEntity(
+      id: const obx_int.IdUid(1, 4618804454351060149),
       name: 'Transaction',
-      lastPropertyId: const IdUid(19, 8755329377193379155),
+      lastPropertyId: const obx_int.IdUid(19, 8755329377193379155),
       flags: 0,
-      properties: <ModelProperty>[
-        ModelProperty(
-            id: const IdUid(1, 8781276084069730392),
+      properties: <obx_int.ModelProperty>[
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(1, 8781276084069730392),
             name: 'id',
             type: 6,
             flags: 1),
-        ModelProperty(
-            id: const IdUid(2, 5363576776313056651),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(2, 5363576776313056651),
             name: 'amountReceived',
             type: 6,
             flags: 0),
-        ModelProperty(
-            id: const IdUid(3, 229819085246340484),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(3, 229819085246340484),
             name: 'amount',
             type: 6,
             flags: 0),
-        ModelProperty(
-            id: const IdUid(4, 5878102752321537457),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(4, 5878102752321537457),
             name: 'status',
             type: 9,
             flags: 0),
-        ModelProperty(
-            id: const IdUid(5, 8305986931400052475),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(5, 8305986931400052475),
             name: 'type',
             type: 9,
             flags: 0),
-        ModelProperty(
-            id: const IdUid(6, 7264058677602750385),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(6, 7264058677602750385),
             name: 'userReference',
             type: 9,
             flags: 0),
-        ModelProperty(
-            id: const IdUid(7, 6293508356562973890),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(7, 6293508356562973890),
             name: 'uuid',
             type: 9,
             flags: 0),
-        ModelProperty(
-            id: const IdUid(8, 4943537041431973658),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(8, 4943537041431973658),
             name: 'paymentMethodCode',
             type: 9,
             flags: 0),
-        ModelProperty(
-            id: const IdUid(9, 8724710210847963717),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(9, 8724710210847963717),
             name: 'currencyCode',
             type: 9,
             flags: 0),
-        ModelProperty(
-            id: const IdUid(10, 3030383297571253175),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(10, 3030383297571253175),
             name: 'countryCode',
             type: 9,
             flags: 0),
-        ModelProperty(
-            id: const IdUid(11, 1072215046016527590),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(11, 1072215046016527590),
             name: 'recipient',
             type: 9,
             flags: 0),
-        ModelProperty(
-            id: const IdUid(12, 5633732686808401858),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(12, 5633732686808401858),
             name: 'description',
             type: 9,
             flags: 0),
-        ModelProperty(
-            id: const IdUid(13, 3822715295521455656),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(13, 3822715295521455656),
             name: 'isMock',
             type: 6,
             flags: 0),
-        ModelProperty(
-            id: const IdUid(14, 3860362108556479532),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(14, 3860362108556479532),
             name: 'createdAt',
             type: 10,
             flags: 0),
-        ModelProperty(
-            id: const IdUid(15, 4631079861882208978),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(15, 4631079861882208978),
             name: 'updatedAt',
             type: 10,
             flags: 0),
-        ModelProperty(
-            id: const IdUid(16, 3584914286842630199),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(16, 3584914286842630199),
             name: 'customerId',
             type: 9,
             flags: 0),
-        ModelProperty(
-            id: const IdUid(17, 1157199010989443061),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(17, 1157199010989443061),
             name: 'customerName',
             type: 9,
             flags: 0),
-        ModelProperty(
-            id: const IdUid(18, 6542159976294183066),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(18, 6542159976294183066),
             name: 'customerAddress',
             type: 9,
             flags: 0),
-        ModelProperty(
-            id: const IdUid(19, 8755329377193379155),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(19, 8755329377193379155),
             name: 'customerPhone',
             type: 9,
             flags: 0)
       ],
-      relations: <ModelRelation>[],
-      backlinks: <ModelBacklink>[]),
-  ModelEntity(
-      id: const IdUid(4, 5190749310215474288),
+      relations: <obx_int.ModelRelation>[],
+      backlinks: <obx_int.ModelBacklink>[]),
+  obx_int.ModelEntity(
+      id: const obx_int.IdUid(4, 5190749310215474288),
       name: 'PaymentLog',
-      lastPropertyId: const IdUid(8, 7345387511162925630),
+      lastPropertyId: const obx_int.IdUid(11, 2106268387231355317),
       flags: 0,
-      properties: <ModelProperty>[
-        ModelProperty(
-            id: const IdUid(1, 8413731802151063849),
+      properties: <obx_int.ModelProperty>[
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(1, 8413731802151063849),
             name: 'id',
             type: 6,
             flags: 1),
-        ModelProperty(
-            id: const IdUid(2, 175843362128520194),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(2, 175843362128520194),
             name: 'code',
             type: 9,
             flags: 0),
-        ModelProperty(
-            id: const IdUid(3, 2845615337566699016),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(3, 2845615337566699016),
             name: 'amount',
             type: 6,
             flags: 0),
-        ModelProperty(
-            id: const IdUid(4, 6263750282429988447),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(4, 6263750282429988447),
             name: 'serviceName',
             type: 9,
             flags: 0),
-        ModelProperty(
-            id: const IdUid(5, 8347233097877066548),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(5, 8347233097877066548),
             name: 'createdAt',
             type: 10,
             flags: 0),
-        ModelProperty(
-            id: const IdUid(6, 4806270593745152372),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(6, 4806270593745152372),
             name: 'creditDestination',
             type: 9,
             flags: 0),
-        ModelProperty(
-            id: const IdUid(7, 5913572540638713264),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(7, 5913572540638713264),
             name: 'debitDestination',
             type: 9,
             flags: 0),
-        ModelProperty(
-            id: const IdUid(8, 7345387511162925630),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(8, 7345387511162925630),
             name: 'productName',
+            type: 9,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(9, 42719889324564609),
+            name: 'serviceImage',
+            type: 9,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(10, 1663519098743802921),
+            name: 'serviceUuid',
+            type: 9,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(11, 2106268387231355317),
+            name: 'productUuid',
             type: 9,
             flags: 0)
       ],
-      relations: <ModelRelation>[],
-      backlinks: <ModelBacklink>[])
+      relations: <obx_int.ModelRelation>[],
+      backlinks: <obx_int.ModelBacklink>[])
 ];
 
 /// Shortcut for [Store.new] that passes [getObjectBoxModel] and for Flutter
@@ -182,30 +198,38 @@ final _entities = <ModelEntity>[
 /// Note: for desktop apps it is recommended to specify a unique [directory].
 ///
 /// See [Store.new] for an explanation of all parameters.
-Future<Store> openStore(
-        {String? directory,
-        int? maxDBSizeInKB,
-        int? fileMode,
-        int? maxReaders,
-        bool queriesCaseSensitiveDefault = true,
-        String? macosApplicationGroup}) async =>
-    Store(getObjectBoxModel(),
-        directory: directory ?? (await defaultStoreDirectory()).path,
-        maxDBSizeInKB: maxDBSizeInKB,
-        fileMode: fileMode,
-        maxReaders: maxReaders,
-        queriesCaseSensitiveDefault: queriesCaseSensitiveDefault,
-        macosApplicationGroup: macosApplicationGroup);
+///
+/// For Flutter apps, also calls `loadObjectBoxLibraryAndroidCompat()` from
+/// the ObjectBox Flutter library to fix loading the native ObjectBox library
+/// on Android 6 and older.
+Future<obx.Store> openStore(
+    {String? directory,
+    int? maxDBSizeInKB,
+    int? maxDataSizeInKB,
+    int? fileMode,
+    int? maxReaders,
+    bool queriesCaseSensitiveDefault = true,
+    String? macosApplicationGroup}) async {
+  await loadObjectBoxLibraryAndroidCompat();
+  return obx.Store(getObjectBoxModel(),
+      directory: directory ?? (await defaultStoreDirectory()).path,
+      maxDBSizeInKB: maxDBSizeInKB,
+      maxDataSizeInKB: maxDataSizeInKB,
+      fileMode: fileMode,
+      maxReaders: maxReaders,
+      queriesCaseSensitiveDefault: queriesCaseSensitiveDefault,
+      macosApplicationGroup: macosApplicationGroup);
+}
 
 /// Returns the ObjectBox model definition for this project for use with
 /// [Store.new].
-ModelDefinition getObjectBoxModel() {
-  final model = ModelInfo(
+obx_int.ModelDefinition getObjectBoxModel() {
+  final model = obx_int.ModelInfo(
       entities: _entities,
-      lastEntityId: const IdUid(4, 5190749310215474288),
-      lastIndexId: const IdUid(0, 0),
-      lastRelationId: const IdUid(0, 0),
-      lastSequenceId: const IdUid(0, 0),
+      lastEntityId: const obx_int.IdUid(4, 5190749310215474288),
+      lastIndexId: const obx_int.IdUid(0, 0),
+      lastRelationId: const obx_int.IdUid(0, 0),
+      lastSequenceId: const obx_int.IdUid(0, 0),
       retiredEntityUids: const [1421381205658015858, 2547090182853682123],
       retiredIndexUids: const [],
       retiredPropertyUids: const [
@@ -229,8 +253,8 @@ ModelDefinition getObjectBoxModel() {
       modelVersionParserMinimum: 5,
       version: 1);
 
-  final bindings = <Type, EntityDefinition>{
-    Transaction: EntityDefinition<Transaction>(
+  final bindings = <Type, obx_int.EntityDefinition>{
+    Transaction: obx_int.EntityDefinition<Transaction>(
         model: _entities[0],
         toOneRelations: (Transaction object) => [],
         toManyRelations: (Transaction object) => {},
@@ -286,7 +310,7 @@ ModelDefinition getObjectBoxModel() {
           fbb.finish(fbb.endTable());
           return object.id;
         },
-        objectFromFB: (Store store, ByteData fbData) {
+        objectFromFB: (obx.Store store, ByteData fbData) {
           final buffer = fb.BufferContext(fbData);
           final rootOffset = buffer.derefObject(0);
           final updatedAtValue =
@@ -361,7 +385,7 @@ ModelDefinition getObjectBoxModel() {
 
           return object;
         }),
-    PaymentLog: EntityDefinition<PaymentLog>(
+    PaymentLog: obx_int.EntityDefinition<PaymentLog>(
         model: _entities[1],
         toOneRelations: (PaymentLog object) => [],
         toManyRelations: (PaymentLog object) => {},
@@ -377,7 +401,10 @@ ModelDefinition getObjectBoxModel() {
           final debitDestinationOffset =
               fbb.writeString(object.debitDestination);
           final productNameOffset = fbb.writeString(object.productName);
-          fbb.startTable(9);
+          final serviceImageOffset = fbb.writeString(object.serviceImage);
+          final serviceUuidOffset = fbb.writeString(object.serviceUuid);
+          final productUuidOffset = fbb.writeString(object.productUuid);
+          fbb.startTable(12);
           fbb.addInt64(0, object.id);
           fbb.addOffset(1, codeOffset);
           fbb.addInt64(2, object.amount);
@@ -386,10 +413,13 @@ ModelDefinition getObjectBoxModel() {
           fbb.addOffset(5, creditDestinationOffset);
           fbb.addOffset(6, debitDestinationOffset);
           fbb.addOffset(7, productNameOffset);
+          fbb.addOffset(8, serviceImageOffset);
+          fbb.addOffset(9, serviceUuidOffset);
+          fbb.addOffset(10, productUuidOffset);
           fbb.finish(fbb.endTable());
           return object.id;
         },
-        objectFromFB: (Store store, ByteData fbData) {
+        objectFromFB: (obx.Store store, ByteData fbData) {
           final buffer = fb.BufferContext(fbData);
           final rootOffset = buffer.derefObject(0);
           final createdAtValue =
@@ -403,6 +433,15 @@ ModelDefinition getObjectBoxModel() {
           final serviceNameParam =
               const fb.StringReader(asciiOptimization: true)
                   .vTableGet(buffer, rootOffset, 10, '');
+          final serviceUuidParam =
+              const fb.StringReader(asciiOptimization: true)
+                  .vTableGet(buffer, rootOffset, 22, '');
+          final productUuidParam =
+              const fb.StringReader(asciiOptimization: true)
+                  .vTableGet(buffer, rootOffset, 24, '');
+          final serviceImageParam =
+              const fb.StringReader(asciiOptimization: true)
+                  .vTableGet(buffer, rootOffset, 20, '');
           final productNameParam =
               const fb.StringReader(asciiOptimization: true)
                   .vTableGet(buffer, rootOffset, 18, '');
@@ -420,6 +459,9 @@ ModelDefinition getObjectBoxModel() {
               code: codeParam,
               amount: amountParam,
               serviceName: serviceNameParam,
+              serviceUuid: serviceUuidParam,
+              productUuid: productUuidParam,
+              serviceImage: serviceImageParam,
               productName: productNameParam,
               creditDestination: creditDestinationParam,
               debitDestination: debitDestinationParam,
@@ -429,119 +471,131 @@ ModelDefinition getObjectBoxModel() {
         })
   };
 
-  return ModelDefinition(model, bindings);
+  return obx_int.ModelDefinition(model, bindings);
 }
 
 /// [Transaction] entity fields to define ObjectBox queries.
 class Transaction_ {
   /// see [Transaction.id]
   static final id =
-      QueryIntegerProperty<Transaction>(_entities[0].properties[0]);
+      obx.QueryIntegerProperty<Transaction>(_entities[0].properties[0]);
 
   /// see [Transaction.amountReceived]
   static final amountReceived =
-      QueryIntegerProperty<Transaction>(_entities[0].properties[1]);
+      obx.QueryIntegerProperty<Transaction>(_entities[0].properties[1]);
 
   /// see [Transaction.amount]
   static final amount =
-      QueryIntegerProperty<Transaction>(_entities[0].properties[2]);
+      obx.QueryIntegerProperty<Transaction>(_entities[0].properties[2]);
 
   /// see [Transaction.status]
   static final status =
-      QueryStringProperty<Transaction>(_entities[0].properties[3]);
+      obx.QueryStringProperty<Transaction>(_entities[0].properties[3]);
 
   /// see [Transaction.type]
   static final type =
-      QueryStringProperty<Transaction>(_entities[0].properties[4]);
+      obx.QueryStringProperty<Transaction>(_entities[0].properties[4]);
 
   /// see [Transaction.userReference]
   static final userReference =
-      QueryStringProperty<Transaction>(_entities[0].properties[5]);
+      obx.QueryStringProperty<Transaction>(_entities[0].properties[5]);
 
   /// see [Transaction.uuid]
   static final uuid =
-      QueryStringProperty<Transaction>(_entities[0].properties[6]);
+      obx.QueryStringProperty<Transaction>(_entities[0].properties[6]);
 
   /// see [Transaction.paymentMethodCode]
   static final paymentMethodCode =
-      QueryStringProperty<Transaction>(_entities[0].properties[7]);
+      obx.QueryStringProperty<Transaction>(_entities[0].properties[7]);
 
   /// see [Transaction.currencyCode]
   static final currencyCode =
-      QueryStringProperty<Transaction>(_entities[0].properties[8]);
+      obx.QueryStringProperty<Transaction>(_entities[0].properties[8]);
 
   /// see [Transaction.countryCode]
   static final countryCode =
-      QueryStringProperty<Transaction>(_entities[0].properties[9]);
+      obx.QueryStringProperty<Transaction>(_entities[0].properties[9]);
 
   /// see [Transaction.recipient]
   static final recipient =
-      QueryStringProperty<Transaction>(_entities[0].properties[10]);
+      obx.QueryStringProperty<Transaction>(_entities[0].properties[10]);
 
   /// see [Transaction.description]
   static final description =
-      QueryStringProperty<Transaction>(_entities[0].properties[11]);
+      obx.QueryStringProperty<Transaction>(_entities[0].properties[11]);
 
   /// see [Transaction.isMock]
   static final isMock =
-      QueryIntegerProperty<Transaction>(_entities[0].properties[12]);
+      obx.QueryIntegerProperty<Transaction>(_entities[0].properties[12]);
 
   /// see [Transaction.createdAt]
   static final createdAt =
-      QueryIntegerProperty<Transaction>(_entities[0].properties[13]);
+      obx.QueryDateProperty<Transaction>(_entities[0].properties[13]);
 
   /// see [Transaction.updatedAt]
   static final updatedAt =
-      QueryIntegerProperty<Transaction>(_entities[0].properties[14]);
+      obx.QueryDateProperty<Transaction>(_entities[0].properties[14]);
 
   /// see [Transaction.customerId]
   static final customerId =
-      QueryStringProperty<Transaction>(_entities[0].properties[15]);
+      obx.QueryStringProperty<Transaction>(_entities[0].properties[15]);
 
   /// see [Transaction.customerName]
   static final customerName =
-      QueryStringProperty<Transaction>(_entities[0].properties[16]);
+      obx.QueryStringProperty<Transaction>(_entities[0].properties[16]);
 
   /// see [Transaction.customerAddress]
   static final customerAddress =
-      QueryStringProperty<Transaction>(_entities[0].properties[17]);
+      obx.QueryStringProperty<Transaction>(_entities[0].properties[17]);
 
   /// see [Transaction.customerPhone]
   static final customerPhone =
-      QueryStringProperty<Transaction>(_entities[0].properties[18]);
+      obx.QueryStringProperty<Transaction>(_entities[0].properties[18]);
 }
 
 /// [PaymentLog] entity fields to define ObjectBox queries.
 class PaymentLog_ {
   /// see [PaymentLog.id]
   static final id =
-      QueryIntegerProperty<PaymentLog>(_entities[1].properties[0]);
+      obx.QueryIntegerProperty<PaymentLog>(_entities[1].properties[0]);
 
   /// see [PaymentLog.code]
   static final code =
-      QueryStringProperty<PaymentLog>(_entities[1].properties[1]);
+      obx.QueryStringProperty<PaymentLog>(_entities[1].properties[1]);
 
   /// see [PaymentLog.amount]
   static final amount =
-      QueryIntegerProperty<PaymentLog>(_entities[1].properties[2]);
+      obx.QueryIntegerProperty<PaymentLog>(_entities[1].properties[2]);
 
   /// see [PaymentLog.serviceName]
   static final serviceName =
-      QueryStringProperty<PaymentLog>(_entities[1].properties[3]);
+      obx.QueryStringProperty<PaymentLog>(_entities[1].properties[3]);
 
   /// see [PaymentLog.createdAt]
   static final createdAt =
-      QueryIntegerProperty<PaymentLog>(_entities[1].properties[4]);
+      obx.QueryDateProperty<PaymentLog>(_entities[1].properties[4]);
 
   /// see [PaymentLog.creditDestination]
   static final creditDestination =
-      QueryStringProperty<PaymentLog>(_entities[1].properties[5]);
+      obx.QueryStringProperty<PaymentLog>(_entities[1].properties[5]);
 
   /// see [PaymentLog.debitDestination]
   static final debitDestination =
-      QueryStringProperty<PaymentLog>(_entities[1].properties[6]);
+      obx.QueryStringProperty<PaymentLog>(_entities[1].properties[6]);
 
   /// see [PaymentLog.productName]
   static final productName =
-      QueryStringProperty<PaymentLog>(_entities[1].properties[7]);
+      obx.QueryStringProperty<PaymentLog>(_entities[1].properties[7]);
+
+  /// see [PaymentLog.serviceImage]
+  static final serviceImage =
+      obx.QueryStringProperty<PaymentLog>(_entities[1].properties[8]);
+
+  /// see [PaymentLog.serviceUuid]
+  static final serviceUuid =
+      obx.QueryStringProperty<PaymentLog>(_entities[1].properties[9]);
+
+  /// see [PaymentLog.productUuid]
+  static final productUuid =
+      obx.QueryStringProperty<PaymentLog>(_entities[1].properties[10]);
 }
