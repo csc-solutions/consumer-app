@@ -287,7 +287,7 @@ class RecentTransactionCard extends StatelessWidget {
               primaryOptionTitle: l(context).repeat,
               secondaryOptionTitle: l(context).seeAll,
               onSecondaryOptionPressed: () {
-                context.pushRoute(const PromotionRoute());
+                context.pushRoute(const HistoryRoute());
               },
               title: l(context).mostRecentTransactions,
               child: RecentTransactionDataCardContent(
@@ -323,7 +323,7 @@ class PromotionCard extends StatelessWidget {
             primaryOptionTitle: l(context).buyNow,
             secondaryOptionTitle: l(context).seeAll,
             onSecondaryOptionPressed: () {
-              context.pushRoute(const HistoryRoute());
+              context.pushRoute(const PromotionRoute());
             },
             title: l(context).promotionOfTheDay,
             child: PromotionDataCardContent(

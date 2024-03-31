@@ -21,7 +21,7 @@
   "amount": "Montant",
   "betwen_and_": "Entre {x} et {y}",
   "contactList": "Contacts",
-  "mtnOrOrangeMobileMoneyNumber": "Numero Orange Money ou MTN Mobile Money",
+  "mtnOrOrangeMobileMoneyNumber": "Numero OM ou MTN Momo",
   "enterYourMomoNumber": "Entrez votre numéro mobile money",
   "anErrorOccured": "Une érreur est survenu",
   "pay": "Payer",
@@ -31,5 +31,6 @@
   "to": "Vers",
   "paymentCode": "Code du paiement",
   "iAmContactingAboutPayment": "Je vous contacte a propos du paiement {code}",
-  "backToHome": "Retour a l'accueil"
+  "backToHome": "Retour a l'accueil",
+  "buyService": "Acheter un service"
 }

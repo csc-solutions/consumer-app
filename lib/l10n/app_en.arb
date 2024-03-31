@@ -31,5 +31,7 @@
   "to": "To",
   "paymentCode": "Payment code",
   "iAmContactingAboutPayment": "I am contacting you about the payment {code}",
-  "backToHome": "Back go to home"
+  "backToHome": "Back go to home",
+  "buyService": "Buy a service"
+
 }

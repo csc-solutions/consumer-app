@@ -49,7 +49,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                           child: LinearProgressIndicator()),
                     );
                   }
-                  var data = snapshot.data!.reversed.toList();
+                  var data = snapshot.data!.toList();
                   if (data.isEmpty) {
                     return const SizedBox(
                       width: double.infinity,

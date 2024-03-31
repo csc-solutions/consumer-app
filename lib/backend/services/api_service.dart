@@ -10,6 +10,7 @@ class ApiService {
   Dio get _client {
     BaseOptions options = BaseOptions(
         baseUrl: Config.getBaseUrl(),
+        followRedirects: true,
         headers: {
           "Accept": "application/json",
           "Content-Type": "application/json",

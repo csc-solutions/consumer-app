@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:fleet_consumer/fleet_consumer_app.dart';
+import 'package:fleet_consumer/helpers.dart';
 import 'package:flutter/material.dart';
 
 @immutable
@@ -74,7 +75,7 @@ class _ExpandableFabState extends State<ExpandableFab>
             ),
             _buildTapToCloseFab(),
             ..._buildExpandingActionButtons(),
-            _buildTapToOpenFab(),
+            _buildTapToOpenFab(context),
           ],
         ),
       ),
@@ -123,7 +124,7 @@ class _ExpandableFabState extends State<ExpandableFab>
     return children;
   }
 
-  Widget _buildTapToOpenFab() {
+  Widget _buildTapToOpenFab(BuildContext context) {
     return IgnorePointer(
       ignoring: _open,
       child: AnimatedContainer(
@@ -143,7 +144,7 @@ class _ExpandableFabState extends State<ExpandableFab>
             foregroundColor: Colors.white,
             backgroundColor: FleetConsumerApp.primaryColor,
             onPressed: _toggle,
-            label: const Text('Payer un service'),
+            label: Text(l(context).buyService),
           ),
         ),
       ),
