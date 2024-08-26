@@ -17,7 +17,7 @@ _$ProductImpl _$$ProductImplFromJson(Map<String, dynamic> json) =>
       isPromoted: json['promoted'] as bool? ?? false,
       tag: $enumDecodeNullable(_$ProductTagEnumMap, json['tag']),
       fixedPrice: json['fixed_price'] as bool? ?? true,
-      price: json['price'] as int? ?? null,
+      price: (json['price'] as num?)?.toInt() ?? null,
     );
 
 Map<String, dynamic> _$$ProductImplToJson(_$ProductImpl instance) =>

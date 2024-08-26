@@ -18,9 +18,9 @@ _$ServiceImpl _$$ServiceImplFromJson(Map<String, dynamic> json) =>
               ?.map((e) => Product.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
-      minAmount: json['min_amount'] as int? ?? null,
-      maxAmount: json['max_amount'] as int? ?? null,
-      amount: json['amount'] as int? ?? null,
+      minAmount: (json['min_amount'] as num?)?.toInt() ?? null,
+      maxAmount: (json['max_amount'] as num?)?.toInt() ?? null,
+      amount: (json['amount'] as num?)?.toInt() ?? null,
       formInputLabel: json['form_input_label'] as String? ?? "",
       formInputPlaceholder: json['form_input_placeholder'] as String? ?? "",
       formInputRegex: json['form_input_regex'] as String? ?? "",

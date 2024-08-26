@@ -9,80 +9,6 @@
 
 part of 'app_router.dart';
 
-abstract class _$AppRouter extends RootStackRouter {
-  // ignore: unused_element
-  _$AppRouter({super.navigatorKey});
-
-  @override
-  final Map<String, PageFactory> pagesMap = {
-    HistoryRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: WrappedRoute(child: const HistoryScreen()),
-      );
-    },
-    HomeRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const HomeScreen(),
-      );
-    },
-    PaymentRoute.name: (routeData) {
-      final args = routeData.argsAs<PaymentRouteArgs>();
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: WrappedRoute(
-            child: PaymentScreen(
-          args.product,
-          args.service,
-          key: args.key,
-          destination: args.destination,
-          momoPhoneNumber: args.momoPhoneNumber,
-          amount: args.amount,
-        )),
-      );
-    },
-    ProductsRoute.name: (routeData) {
-      final args = routeData.argsAs<ProductsRouteArgs>();
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: WrappedRoute(
-            child: ProductsScreen(
-          args.service,
-          key: args.key,
-        )),
-      );
-    },
-    PromotionRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const PromotionScreen(),
-      );
-    },
-    ServicesRoute.name: (routeData) {
-      final args = routeData.argsAs<ServicesRouteArgs>();
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: ServicesScreen(
-          key: args.key,
-          kind: args.kind,
-        ),
-      );
-    },
-    StatusRoute.name: (routeData) {
-      final args = routeData.argsAs<StatusRouteArgs>();
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: WrappedRoute(
-            child: StatusScreen(
-          args.payment,
-          key: args.key,
-        )),
-      );
-    },
-  };
-}
-
 /// generated route for
 /// [HistoryScreen]
 class HistoryRoute extends PageRouteInfo<void> {
@@ -94,7 +20,12 @@ class HistoryRoute extends PageRouteInfo<void> {
 
   static const String name = 'HistoryRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const HistoryScreen());
+    },
+  );
 }
 
 /// generated route for
@@ -108,7 +39,12 @@ class HomeRoute extends PageRouteInfo<void> {
 
   static const String name = 'HomeRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const HomeScreen();
+    },
+  );
 }
 
 /// generated route for
@@ -137,8 +73,21 @@ class PaymentRoute extends PageRouteInfo<PaymentRouteArgs> {
 
   static const String name = 'PaymentRoute';
 
-  static const PageInfo<PaymentRouteArgs> page =
-      PageInfo<PaymentRouteArgs>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<PaymentRouteArgs>();
+      return WrappedRoute(
+          child: PaymentScreen(
+        args.product,
+        args.service,
+        key: args.key,
+        destination: args.destination,
+        momoPhoneNumber: args.momoPhoneNumber,
+        amount: args.amount,
+      ));
+    },
+  );
 }
 
 class PaymentRouteArgs {
@@ -187,8 +136,17 @@ class ProductsRoute extends PageRouteInfo<ProductsRouteArgs> {
 
   static const String name = 'ProductsRoute';
 
-  static const PageInfo<ProductsRouteArgs> page =
-      PageInfo<ProductsRouteArgs>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<ProductsRouteArgs>();
+      return WrappedRoute(
+          child: ProductsScreen(
+        args.service,
+        key: args.key,
+      ));
+    },
+  );
 }
 
 class ProductsRouteArgs {
@@ -218,7 +176,12 @@ class PromotionRoute extends PageRouteInfo<void> {
 
   static const String name = 'PromotionRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const PromotionScreen();
+    },
+  );
 }
 
 /// generated route for
@@ -239,8 +202,16 @@ class ServicesRoute extends PageRouteInfo<ServicesRouteArgs> {
 
   static const String name = 'ServicesRoute';
 
-  static const PageInfo<ServicesRouteArgs> page =
-      PageInfo<ServicesRouteArgs>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<ServicesRouteArgs>();
+      return ServicesScreen(
+        key: args.key,
+        kind: args.kind,
+      );
+    },
+  );
 }
 
 class ServicesRouteArgs {
@@ -277,7 +248,17 @@ class StatusRoute extends PageRouteInfo<StatusRouteArgs> {
 
   static const String name = 'StatusRoute';
 
-  static const PageInfo<StatusRouteArgs> page = PageInfo<StatusRouteArgs>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<StatusRouteArgs>();
+      return WrappedRoute(
+          child: StatusScreen(
+        args.payment,
+        key: args.key,
+      ));
+    },
+  );
 }
 
 class StatusRouteArgs {

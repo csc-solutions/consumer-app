@@ -8,9 +8,9 @@ part of 'transaction.dart';
 
 _$TransactionImpl _$$TransactionImplFromJson(Map<String, dynamic> json) =>
     _$TransactionImpl(
-      amountReceived: json['amount_received'] as int?,
-      id: json['id'] as int? ?? 0,
-      amount: json['amount'] as int,
+      amountReceived: (json['amount_received'] as num?)?.toInt(),
+      id: (json['id'] as num?)?.toInt() ?? 0,
+      amount: (json['amount'] as num).toInt(),
       status: json['status'] as String,
       type: json['type'] as String,
       userReference: json['user_reference'] as String,
@@ -20,7 +20,7 @@ _$TransactionImpl _$$TransactionImplFromJson(Map<String, dynamic> json) =>
       countryCode: json['country_code'] as String,
       recipient: json['recipient'] as String,
       description: json['description'] as String?,
-      isMock: json['is_mock'] as int?,
+      isMock: (json['is_mock'] as num?)?.toInt(),
       createdAt: DateTime.parse(json['created_at'] as String),
       updatedAt: json['updated_at'] == null
           ? null

@@ -348,7 +348,7 @@ class ProductInfo extends StatelessWidget {
             ),
             InkWell(
               onTap: () {
-                context.popRoute();
+                context.maybePop();
               },
               child: Text(
                 l(context).change,
