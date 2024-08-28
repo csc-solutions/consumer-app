@@ -10,6 +10,7 @@ class Product with _$Product {
     @Default("") String uuid,
     @Default("") String color,
     @Default("") String name,
+    @Default("") String slug,
     @Default("") String description,
     @JsonKey(name: "default") @Default(false) bool isDefault,
     @JsonKey(name: "featured") @Default(false) bool isFeatured,

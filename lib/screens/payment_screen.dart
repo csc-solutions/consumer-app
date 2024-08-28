@@ -1,9 +1,11 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:dio/dio.dart';
 import 'package:fleet_consumer/app_router.dart';
 import 'package:fleet_consumer/backend/blocs/payment/payment_cubit.dart';
 import 'package:fleet_consumer/backend/forms/inputs/amount_input.dart';
 import 'package:fleet_consumer/backend/forms/inputs/destination_input.dart';
 import 'package:fleet_consumer/backend/forms/inputs/momo_number_input.dart';
+import 'package:fleet_consumer/backend/models/coupon.dart';
 import 'package:fleet_consumer/backend/models/product.dart';
 import 'package:fleet_consumer/backend/models/service.dart';
 import 'package:fleet_consumer/backend/services/api_service.dart';
@@ -109,7 +111,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                   if (state.status.isInProgress)
                     const LinearProgressIndicator(),
                   Padding(
-                    padding: const EdgeInsets.only(bottom: 24.0),
+                    padding: const EdgeInsets.only(bottom: 8.0),
                     child: Builder(builder: (context) {
                       if (!widget.product.fixedPrice) {
                         return _TextField(
@@ -136,6 +138,42 @@ class _PaymentScreenState extends State<PaymentScreen> {
                           padding: const EdgeInsets.only(top: 16.0),
                           child: ProductInfo(widget: widget));
                     }),
+                  ),
+                  BlocBuilder<PaymentCubit, PaymentState>(
+                    builder: (context, state) {
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 8.0),
+                        child: ListTile(
+                          title: Text(l(context).amount),
+                          trailing: ElevatedButton.icon(
+                              icon: Icon(state.discounted
+                                  ? Icons.close
+                                  : Icons.discount),
+                              onPressed: _showCouponBottomSheet,
+                              label: Text(state.discounted
+                                  ? state.coupon.code
+                                  : 'Use a coupon')),
+                          subtitle: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                formatAmount(state.discountedAmount.toInt()),
+                                style: const TextStyle(fontSize: 18),
+                              ),
+                              if (state.discounted)
+                                Text(
+                                  formatAmount(state.amount.toInt()),
+                                  style: const TextStyle(
+                                      decoration: TextDecoration.lineThrough,
+                                      fontSize: 14,
+                                      color: Colors.red),
+                                ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
                   ),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 4.0),
@@ -259,6 +297,21 @@ class _PaymentScreenState extends State<PaymentScreen> {
     destinationInputController.text = phoneNumber;
     cubit.onDestinationChanged(phoneNumber);
   }
+
+  _showCouponBottomSheet() {
+    if (context.read<PaymentCubit>().state.discounted) {
+      context.read<PaymentCubit>().addCoupon(const Coupon());
+      return;
+    }
+    showModalBottomSheet(
+      isScrollControlled:  true,
+        context: context,
+        builder: (context) => const CouponBottomSheet()).then((coupon) {
+      if (coupon is Coupon) {
+        context.read<PaymentCubit>().addCoupon(coupon);
+      }
+    });
+  }
 }
 
 class _TextField extends StatelessWidget {
@@ -307,6 +360,97 @@ class _TextField extends StatelessWidget {
   }
 }
 
+class CouponBottomSheet extends StatefulWidget {
+  const CouponBottomSheet({super.key});
+
+  @override
+  State<CouponBottomSheet> createState() => _CouponBottomSheetState();
+}
+
+class _CouponBottomSheetState extends State<CouponBottomSheet> {
+  late final ApiService apiService;
+  String code = "";
+  String error = "";
+  bool loading = false;
+  @override
+  void initState() {
+    apiService = context.read<ApiService>();
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding:
+          EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+      child: SizedBox(
+        height: 300,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              const ListTile(
+                leading: Icon(Icons.discount),
+                title: Text("Enter your coupon code"),
+              ),
+              _TextField(
+                onChanged: (v) {
+                  setState(() {
+                    code = v;
+                  });
+                },
+                label: const Text('Code'),
+              ),
+              if (error.isNotEmpty)
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: Text(
+                    error,
+                    style: const TextStyle(color: Colors.red),
+                  ),
+                ),
+              loading
+                  ? const CircularProgressIndicator()
+                  : SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                          onPressed: (code.isEmpty || loading)
+                              ? null
+                              : () {
+                                  setState(() {
+                                    loading = true;
+                                  });
+                                  apiService.getCoupon(code).then((v) {
+                                    Navigator.of(context).pop(v);
+                                    setState(() {
+                                      loading = false;
+                                    });
+                                  }).catchError((err) {
+                                    setState(() {
+                                      loading = false;
+                                    });
+        
+                                    setState(() {
+                                      error = l(context).anErrorOccured;
+                                      if (err is DioException) {
+                                        if (err.response?.statusCode == 404) {
+                                          error =
+                                              "Invalid or expired coupon code";
+                                        }
+                                      }
+                                    });
+                                  });
+                                },
+                          child: const Text('Use')),
+                    )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class ProductInfo extends StatelessWidget {
   const ProductInfo({
     super.key,
@@ -333,29 +477,22 @@ class ProductInfo extends StatelessWidget {
                   padding: const EdgeInsets.only(bottom: 8.0),
                   child: Text(widget.product.name),
                 ),
-                Text(widget.product.description),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 4.0),
+                  child: Text(widget.product.description),
+                ),
+                InkWell(
+                  onTap: () {
+                    context.maybePop();
+                  },
+                  child: Text(
+                    l(context).change,
+                    style: const TextStyle(fontSize: 14, color: Colors.blue),
+                  ),
+                ),
               ],
             ),
           ),
-        ),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(bottom: 8.0),
-              child: Text(formatAmount(widget.product.price!)),
-            ),
-            InkWell(
-              onTap: () {
-                context.maybePop();
-              },
-              child: Text(
-                l(context).change,
-                style: const TextStyle(fontSize: 14, color: Colors.blue),
-              ),
-            ),
-          ],
         ),
       ],
     );

@@ -19,6 +19,8 @@ mixin _$PaymentState {
   FormzSubmissionStatus get status => throw _privateConstructorUsedError;
   PaymentForm get form => throw _privateConstructorUsedError;
   Payment get payment => throw _privateConstructorUsedError;
+  Coupon get coupon => throw _privateConstructorUsedError;
+  Product get product => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PaymentStateCopyWith<PaymentState> get copyWith =>
@@ -31,10 +33,17 @@ abstract class $PaymentStateCopyWith<$Res> {
           PaymentState value, $Res Function(PaymentState) then) =
       _$PaymentStateCopyWithImpl<$Res, PaymentState>;
   @useResult
-  $Res call({FormzSubmissionStatus status, PaymentForm form, Payment payment});
+  $Res call(
+      {FormzSubmissionStatus status,
+      PaymentForm form,
+      Payment payment,
+      Coupon coupon,
+      Product product});
 
   $PaymentFormCopyWith<$Res> get form;
   $PaymentCopyWith<$Res> get payment;
+  $CouponCopyWith<$Res> get coupon;
+  $ProductCopyWith<$Res> get product;
 }
 
 /// @nodoc
@@ -53,6 +62,8 @@ class _$PaymentStateCopyWithImpl<$Res, $Val extends PaymentState>
     Object? status = null,
     Object? form = null,
     Object? payment = null,
+    Object? coupon = null,
+    Object? product = null,
   }) {
     return _then(_value.copyWith(
       status: null == status
@@ -67,6 +78,14 @@ class _$PaymentStateCopyWithImpl<$Res, $Val extends PaymentState>
           ? _value.payment
           : payment // ignore: cast_nullable_to_non_nullable
               as Payment,
+      coupon: null == coupon
+          ? _value.coupon
+          : coupon // ignore: cast_nullable_to_non_nullable
+              as Coupon,
+      product: null == product
+          ? _value.product
+          : product // ignore: cast_nullable_to_non_nullable
+              as Product,
     ) as $Val);
   }
 
@@ -85,6 +104,22 @@ class _$PaymentStateCopyWithImpl<$Res, $Val extends PaymentState>
       return _then(_value.copyWith(payment: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $CouponCopyWith<$Res> get coupon {
+    return $CouponCopyWith<$Res>(_value.coupon, (value) {
+      return _then(_value.copyWith(coupon: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ProductCopyWith<$Res> get product {
+    return $ProductCopyWith<$Res>(_value.product, (value) {
+      return _then(_value.copyWith(product: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -95,12 +130,21 @@ abstract class _$$PaymentStateImplCopyWith<$Res>
       __$$PaymentStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({FormzSubmissionStatus status, PaymentForm form, Payment payment});
+  $Res call(
+      {FormzSubmissionStatus status,
+      PaymentForm form,
+      Payment payment,
+      Coupon coupon,
+      Product product});
 
   @override
   $PaymentFormCopyWith<$Res> get form;
   @override
   $PaymentCopyWith<$Res> get payment;
+  @override
+  $CouponCopyWith<$Res> get coupon;
+  @override
+  $ProductCopyWith<$Res> get product;
 }
 
 /// @nodoc
@@ -117,6 +161,8 @@ class __$$PaymentStateImplCopyWithImpl<$Res>
     Object? status = null,
     Object? form = null,
     Object? payment = null,
+    Object? coupon = null,
+    Object? product = null,
   }) {
     return _then(_$PaymentStateImpl(
       status: null == status
@@ -131,17 +177,28 @@ class __$$PaymentStateImplCopyWithImpl<$Res>
           ? _value.payment
           : payment // ignore: cast_nullable_to_non_nullable
               as Payment,
+      coupon: null == coupon
+          ? _value.coupon
+          : coupon // ignore: cast_nullable_to_non_nullable
+              as Coupon,
+      product: null == product
+          ? _value.product
+          : product // ignore: cast_nullable_to_non_nullable
+              as Product,
     ));
   }
 }
 
 /// @nodoc
 
-class _$PaymentStateImpl implements _PaymentState {
+class _$PaymentStateImpl extends _PaymentState {
   _$PaymentStateImpl(
       {this.status = FormzSubmissionStatus.initial,
       this.form = const PaymentForm(),
-      this.payment = const Payment()});
+      this.payment = const Payment(),
+      this.coupon = const Coupon(),
+      this.product = const Product()})
+      : super._();
 
   @override
   @JsonKey()
@@ -152,10 +209,16 @@ class _$PaymentStateImpl implements _PaymentState {
   @override
   @JsonKey()
   final Payment payment;
+  @override
+  @JsonKey()
+  final Coupon coupon;
+  @override
+  @JsonKey()
+  final Product product;
 
   @override
   String toString() {
-    return 'PaymentState(status: $status, form: $form, payment: $payment)';
+    return 'PaymentState(status: $status, form: $form, payment: $payment, coupon: $coupon, product: $product)';
   }
 
   @override
@@ -165,11 +228,14 @@ class _$PaymentStateImpl implements _PaymentState {
             other is _$PaymentStateImpl &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.form, form) || other.form == form) &&
-            (identical(other.payment, payment) || other.payment == payment));
+            (identical(other.payment, payment) || other.payment == payment) &&
+            (identical(other.coupon, coupon) || other.coupon == coupon) &&
+            (identical(other.product, product) || other.product == product));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, form, payment);
+  int get hashCode =>
+      Object.hash(runtimeType, status, form, payment, coupon, product);
 
   @JsonKey(ignore: true)
   @override
@@ -178,11 +244,14 @@ class _$PaymentStateImpl implements _PaymentState {
       __$$PaymentStateImplCopyWithImpl<_$PaymentStateImpl>(this, _$identity);
 }
 
-abstract class _PaymentState implements PaymentState {
+abstract class _PaymentState extends PaymentState {
   factory _PaymentState(
       {final FormzSubmissionStatus status,
       final PaymentForm form,
-      final Payment payment}) = _$PaymentStateImpl;
+      final Payment payment,
+      final Coupon coupon,
+      final Product product}) = _$PaymentStateImpl;
+  _PaymentState._() : super._();
 
   @override
   FormzSubmissionStatus get status;
@@ -190,6 +259,10 @@ abstract class _PaymentState implements PaymentState {
   PaymentForm get form;
   @override
   Payment get payment;
+  @override
+  Coupon get coupon;
+  @override
+  Product get product;
   @override
   @JsonKey(ignore: true)
   _$$PaymentStateImplCopyWith<_$PaymentStateImpl> get copyWith =>

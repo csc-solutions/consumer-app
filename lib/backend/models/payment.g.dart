@@ -15,6 +15,7 @@ _$PaymentImpl _$$PaymentImplFromJson(Map<String, dynamic> json) =>
       debitDestination: json['debit_destination'] as String? ?? "",
       creditDestination: json['credit_destination'] as String? ?? "",
       amount: json['amount'] == null ? 0 : _stringToInt(json['amount']),
+      discountedAmount: (json['discounted_amount'] as num?)?.toInt() ?? 0,
       product: json['product'] == null
           ? const Product()
           : Product.fromJson(json['product'] as Map<String, dynamic>),
@@ -40,6 +41,7 @@ Map<String, dynamic> _$$PaymentImplToJson(_$PaymentImpl instance) =>
       'debit_destination': instance.debitDestination,
       'credit_destination': instance.creditDestination,
       'amount': instance.amount,
+      'discounted_amount': instance.discountedAmount,
       'product': instance.product,
       'service': instance.service,
       'service_payment': instance.servicePayment,

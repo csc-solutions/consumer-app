@@ -87,10 +87,34 @@ class StatusScreen extends StatelessWidget implements AutoRouteWrapper {
                     text: TextSpan(
                         style: Theme.of(context).textTheme.bodyMedium,
                         children: [
+                      const TextSpan(
+                          text: "Via: ",
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                      TextSpan(text: state.payment.debitDestination),
+                    ])),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0)
+                    .copyWith(bottom: 16),
+                child: RichText(
+                    text: TextSpan(
+                        style: Theme.of(context).textTheme.bodyMedium,
+                        children: [
                       TextSpan(
                           text: "${l(context).amount}: ",
                           style: const TextStyle(fontWeight: FontWeight.bold)),
-                      TextSpan(text: formatAmount(state.payment.amount)),
+                      TextSpan(
+                          text: state.payment.discountedAmount > 0
+                              ? formatAmount(state.payment.discountedAmount)
+                              : formatAmount(state.payment.amount)),
+                      if (state.payment.discountedAmount > 0)
+                        const TextSpan(text: "   "),
+                      TextSpan(
+                          text: formatAmount(state.payment.amount),
+                          style: const TextStyle(
+                              fontSize: 10,
+                              color: Colors.red,
+                              decoration: TextDecoration.lineThrough)),
                     ])),
               ),
               const Divider(),

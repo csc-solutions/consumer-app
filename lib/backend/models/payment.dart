@@ -23,6 +23,7 @@ class Payment with _$Payment {
     @JsonKey(name: "debit_destination") @Default("") String debitDestination,
     @JsonKey(name: "credit_destination") @Default("") String creditDestination,
     @JsonKey(fromJson: _stringToInt) @Default(0) int amount,
+    @JsonKey(name: 'discounted_amount') @Default(0) int discountedAmount,
     @Default(Product()) Product product,
     @Default(Service()) Service service,
     @JsonKey(name: "service_payment")

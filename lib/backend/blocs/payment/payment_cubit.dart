@@ -1,8 +1,11 @@
+import 'dart:math';
+
 import 'package:bloc/bloc.dart';
 import 'package:fleet_consumer/backend/forms/inputs/amount_input.dart';
 import 'package:fleet_consumer/backend/forms/inputs/destination_input.dart';
 import 'package:fleet_consumer/backend/forms/inputs/momo_number_input.dart';
 import 'package:fleet_consumer/backend/forms/payment_form.dart';
+import 'package:fleet_consumer/backend/models/coupon.dart';
 import 'package:fleet_consumer/backend/models/payment_log.dart';
 import 'package:fleet_consumer/backend/models/product.dart';
 import 'package:fleet_consumer/backend/models/service.dart';
@@ -24,6 +27,7 @@ class PaymentCubit extends Cubit<PaymentState> {
 
   PaymentCubit(this.apiService, this.store, this.service, this.product)
       : super(PaymentState(
+            product: product,
             form: PaymentForm(
                 destinationInput:
                     DestinationInput.pure(regex: service.formInputRegex),
@@ -31,6 +35,14 @@ class PaymentCubit extends Cubit<PaymentState> {
                     min: service.minAmount,
                     max: service.maxAmount,
                     amount: product.fixedPrice ? product.price : null))));
+
+  addCoupon(Coupon coupon) {
+    emit(state.copyWith(coupon: coupon));
+  }
+
+  removeCoupon(Coupon coupon) {
+    emit(state.copyWith(coupon: const Coupon()));
+  }
 
   onAmountChanged(int amount) {
     if (product.fixedPrice) {
@@ -68,7 +80,8 @@ class PaymentCubit extends Cubit<PaymentState> {
           product: product,
           debitDestination: state.form.momoNumberInput.value,
           creditDestination: state.form.destinationInput.value,
-          amount: state.form.amountInput.value);
+          amount: state.form.amountInput.value,
+          couponCode: state.coupon.code);
       emit(state.copyWith(
           status: FormzSubmissionStatus.success, payment: payment));
       store.box<PaymentLog>().put(payment.asPaymentLog);

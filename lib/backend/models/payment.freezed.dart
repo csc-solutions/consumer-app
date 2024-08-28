@@ -29,6 +29,8 @@ mixin _$Payment {
   String get creditDestination => throw _privateConstructorUsedError;
   @JsonKey(fromJson: _stringToInt)
   int get amount => throw _privateConstructorUsedError;
+  @JsonKey(name: 'discounted_amount')
+  int get discountedAmount => throw _privateConstructorUsedError;
   Product get product => throw _privateConstructorUsedError;
   Service get service => throw _privateConstructorUsedError;
   @JsonKey(name: "service_payment")
@@ -55,6 +57,7 @@ abstract class $PaymentCopyWith<$Res> {
       @JsonKey(name: "debit_destination") String debitDestination,
       @JsonKey(name: "credit_destination") String creditDestination,
       @JsonKey(fromJson: _stringToInt) int amount,
+      @JsonKey(name: 'discounted_amount') int discountedAmount,
       Product product,
       Service service,
       @JsonKey(name: "service_payment") Service servicePayment,
@@ -85,6 +88,7 @@ class _$PaymentCopyWithImpl<$Res, $Val extends Payment>
     Object? debitDestination = null,
     Object? creditDestination = null,
     Object? amount = null,
+    Object? discountedAmount = null,
     Object? product = null,
     Object? service = null,
     Object? servicePayment = null,
@@ -115,6 +119,10 @@ class _$PaymentCopyWithImpl<$Res, $Val extends Payment>
       amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
+              as int,
+      discountedAmount: null == discountedAmount
+          ? _value.discountedAmount
+          : discountedAmount // ignore: cast_nullable_to_non_nullable
               as int,
       product: null == product
           ? _value.product
@@ -178,6 +186,7 @@ abstract class _$$PaymentImplCopyWith<$Res> implements $PaymentCopyWith<$Res> {
       @JsonKey(name: "debit_destination") String debitDestination,
       @JsonKey(name: "credit_destination") String creditDestination,
       @JsonKey(fromJson: _stringToInt) int amount,
+      @JsonKey(name: 'discounted_amount') int discountedAmount,
       Product product,
       Service service,
       @JsonKey(name: "service_payment") Service servicePayment,
@@ -209,6 +218,7 @@ class __$$PaymentImplCopyWithImpl<$Res>
     Object? debitDestination = null,
     Object? creditDestination = null,
     Object? amount = null,
+    Object? discountedAmount = null,
     Object? product = null,
     Object? service = null,
     Object? servicePayment = null,
@@ -239,6 +249,10 @@ class __$$PaymentImplCopyWithImpl<$Res>
       amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
+              as int,
+      discountedAmount: null == discountedAmount
+          ? _value.discountedAmount
+          : discountedAmount // ignore: cast_nullable_to_non_nullable
               as int,
       product: null == product
           ? _value.product
@@ -274,6 +288,7 @@ class _$PaymentImpl extends _Payment {
       @JsonKey(name: "debit_destination") this.debitDestination = "",
       @JsonKey(name: "credit_destination") this.creditDestination = "",
       @JsonKey(fromJson: _stringToInt) this.amount = 0,
+      @JsonKey(name: 'discounted_amount') this.discountedAmount = 0,
       this.product = const Product(),
       this.service = const Service(),
       @JsonKey(name: "service_payment") this.servicePayment = const Service(),
@@ -303,6 +318,9 @@ class _$PaymentImpl extends _Payment {
   @JsonKey(fromJson: _stringToInt)
   final int amount;
   @override
+  @JsonKey(name: 'discounted_amount')
+  final int discountedAmount;
+  @override
   @JsonKey()
   final Product product;
   @override
@@ -320,7 +338,7 @@ class _$PaymentImpl extends _Payment {
 
   @override
   String toString() {
-    return 'Payment(uuid: $uuid, status: $status, code: $code, debitDestination: $debitDestination, creditDestination: $creditDestination, amount: $amount, product: $product, service: $service, servicePayment: $servicePayment, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'Payment(uuid: $uuid, status: $status, code: $code, debitDestination: $debitDestination, creditDestination: $creditDestination, amount: $amount, discountedAmount: $discountedAmount, product: $product, service: $service, servicePayment: $servicePayment, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -336,6 +354,8 @@ class _$PaymentImpl extends _Payment {
             (identical(other.creditDestination, creditDestination) ||
                 other.creditDestination == creditDestination) &&
             (identical(other.amount, amount) || other.amount == amount) &&
+            (identical(other.discountedAmount, discountedAmount) ||
+                other.discountedAmount == discountedAmount) &&
             (identical(other.product, product) || other.product == product) &&
             (identical(other.service, service) || other.service == service) &&
             (identical(other.servicePayment, servicePayment) ||
@@ -356,6 +376,7 @@ class _$PaymentImpl extends _Payment {
       debitDestination,
       creditDestination,
       amount,
+      discountedAmount,
       product,
       service,
       servicePayment,
@@ -384,6 +405,7 @@ abstract class _Payment extends Payment {
       @JsonKey(name: "debit_destination") final String debitDestination,
       @JsonKey(name: "credit_destination") final String creditDestination,
       @JsonKey(fromJson: _stringToInt) final int amount,
+      @JsonKey(name: 'discounted_amount') final int discountedAmount,
       final Product product,
       final Service service,
       @JsonKey(name: "service_payment") final Service servicePayment,
@@ -408,6 +430,9 @@ abstract class _Payment extends Payment {
   @override
   @JsonKey(fromJson: _stringToInt)
   int get amount;
+  @override
+  @JsonKey(name: 'discounted_amount')
+  int get discountedAmount;
   @override
   Product get product;
   @override

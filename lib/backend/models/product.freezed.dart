@@ -23,6 +23,7 @@ mixin _$Product {
   String get uuid => throw _privateConstructorUsedError;
   String get color => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  String get slug => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   @JsonKey(name: "default")
   bool get isDefault => throw _privateConstructorUsedError;
@@ -49,6 +50,7 @@ abstract class $ProductCopyWith<$Res> {
       {String uuid,
       String color,
       String name,
+      String slug,
       String description,
       @JsonKey(name: "default") bool isDefault,
       @JsonKey(name: "featured") bool isFeatured,
@@ -74,6 +76,7 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
     Object? uuid = null,
     Object? color = null,
     Object? name = null,
+    Object? slug = null,
     Object? description = null,
     Object? isDefault = null,
     Object? isFeatured = null,
@@ -94,6 +97,10 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      slug: null == slug
+          ? _value.slug
+          : slug // ignore: cast_nullable_to_non_nullable
               as String,
       description: null == description
           ? _value.description
@@ -138,6 +145,7 @@ abstract class _$$ProductImplCopyWith<$Res> implements $ProductCopyWith<$Res> {
       {String uuid,
       String color,
       String name,
+      String slug,
       String description,
       @JsonKey(name: "default") bool isDefault,
       @JsonKey(name: "featured") bool isFeatured,
@@ -161,6 +169,7 @@ class __$$ProductImplCopyWithImpl<$Res>
     Object? uuid = null,
     Object? color = null,
     Object? name = null,
+    Object? slug = null,
     Object? description = null,
     Object? isDefault = null,
     Object? isFeatured = null,
@@ -181,6 +190,10 @@ class __$$ProductImplCopyWithImpl<$Res>
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      slug: null == slug
+          ? _value.slug
+          : slug // ignore: cast_nullable_to_non_nullable
               as String,
       description: null == description
           ? _value.description
@@ -221,6 +234,7 @@ class _$ProductImpl implements _Product {
       {this.uuid = "",
       this.color = "",
       this.name = "",
+      this.slug = "",
       this.description = "",
       @JsonKey(name: "default") this.isDefault = false,
       @JsonKey(name: "featured") this.isFeatured = false,
@@ -241,6 +255,9 @@ class _$ProductImpl implements _Product {
   @override
   @JsonKey()
   final String name;
+  @override
+  @JsonKey()
+  final String slug;
   @override
   @JsonKey()
   final String description;
@@ -264,7 +281,7 @@ class _$ProductImpl implements _Product {
 
   @override
   String toString() {
-    return 'Product(uuid: $uuid, color: $color, name: $name, description: $description, isDefault: $isDefault, isFeatured: $isFeatured, isPromoted: $isPromoted, tag: $tag, fixedPrice: $fixedPrice, price: $price)';
+    return 'Product(uuid: $uuid, color: $color, name: $name, slug: $slug, description: $description, isDefault: $isDefault, isFeatured: $isFeatured, isPromoted: $isPromoted, tag: $tag, fixedPrice: $fixedPrice, price: $price)';
   }
 
   @override
@@ -275,6 +292,7 @@ class _$ProductImpl implements _Product {
             (identical(other.uuid, uuid) || other.uuid == uuid) &&
             (identical(other.color, color) || other.color == color) &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.slug, slug) || other.slug == slug) &&
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.isDefault, isDefault) ||
@@ -291,8 +309,8 @@ class _$ProductImpl implements _Product {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, uuid, color, name, description,
-      isDefault, isFeatured, isPromoted, tag, fixedPrice, price);
+  int get hashCode => Object.hash(runtimeType, uuid, color, name, slug,
+      description, isDefault, isFeatured, isPromoted, tag, fixedPrice, price);
 
   @JsonKey(ignore: true)
   @override
@@ -313,6 +331,7 @@ abstract class _Product implements Product {
       {final String uuid,
       final String color,
       final String name,
+      final String slug,
       final String description,
       @JsonKey(name: "default") final bool isDefault,
       @JsonKey(name: "featured") final bool isFeatured,
@@ -329,6 +348,8 @@ abstract class _Product implements Product {
   String get color;
   @override
   String get name;
+  @override
+  String get slug;
   @override
   String get description;
   @override

@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:fleet_consumer/backend/models/api_result.dart';
+import 'package:fleet_consumer/backend/models/coupon.dart';
 import 'package:fleet_consumer/backend/models/payment.dart';
 import 'package:fleet_consumer/backend/models/product.dart';
 import 'package:fleet_consumer/backend/models/service.dart';
@@ -21,7 +22,6 @@ class ApiService {
 
   Future<List<Service>> getServices() {
     return _client.get("/service").then((res) {
-      
       return ApiResult.fromJson(
           res.data,
           (v) => List<Service>.from(
@@ -33,10 +33,12 @@ class ApiService {
       {required Product product,
       required String debitDestination,
       required String creditDestination,
+      String couponCode = "",
       int amount = 0}) {
     return _client.post("/product/${product.uuid}/pay", data: {
       "debit_destination": debitDestination,
       "credit_destination": creditDestination,
+      "coupon_code": couponCode,
       "amount": amount
     }).then((res) {
       return ApiResult.fromJson(
@@ -48,6 +50,13 @@ class ApiService {
     return _client.get("/payment/$code").then((res) {
       return ApiResult.fromJson(
           res.data, (v) => Payment.fromJson(v as Map<String, dynamic>));
+    }).then((value) => value.data!);
+  }
+
+  Future<Coupon> getCoupon(String code) {
+    return _client.get("/coupon/$code").then((res) {
+      return ApiResult.fromJson(
+          res.data, (v) => Coupon.fromJson(v as Map<String, dynamic>));
     }).then((value) => value.data!);
   }
 }
