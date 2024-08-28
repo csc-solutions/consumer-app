@@ -1,7 +1,6 @@
 class Config {
   static String getBaseUrl() {
-    // return "https://easyrecharge.stylesarl.com/api";
-    return "http://10.0.2.2:8000/api";
+    return "https://easyrecharge.stylesarl.com/api";
   }
 
   static String supportNumber() {
