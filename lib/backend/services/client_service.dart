@@ -1,19 +1,15 @@
 import 'package:fleet_consumer/backend/models/client.dart';
-import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/foundation.dart';
 
-import 'client_state.dart';
-
-class ClientCubit extends HydratedCubit<ClientState> {
-  ClientCubit() : super(ClientState());
+class ClientService {
+  ClientService();
 
   /// Sauvegarde le sessionToken(X-CLIENT-SESSION) dans les SharedPreferences avec la clé sessionKey
   Future<void> saveSession(String sessionToken, String sessionKey) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString(sessionKey, sessionToken);
-    emit(state.copyWith(sessionToken: sessionToken));
   }
 
   Future<String?> getSavedSessionToken(String sessionKey) async {
@@ -50,15 +46,5 @@ class ClientCubit extends HydratedCubit<ClientState> {
     }
 
     return client;
-  }
-
-  @override
-  ClientState? fromJson(Map<String, dynamic> json) {
-    return ClientState.fromJson(json);
-  }
-
-  @override
-  Map<String, dynamic>? toJson(ClientState state) {
-    return state.toJson();
   }
 }

@@ -1,5 +1,5 @@
-import 'package:fleet_consumer/backend/blocs/client/client_cubit.dart';
 import 'package:fleet_consumer/backend/services/api_service.dart';
+import 'package:fleet_consumer/backend/services/client_service.dart';
 import 'package:fleet_consumer/config.dart';
 import 'package:fleet_consumer/fleet_consumer_app.dart';
 import 'package:fleet_consumer/store.dart';
@@ -17,12 +17,12 @@ void main() async {
   FlutterNativeSplash.preserve(widgetsBinding: WidgetsBinding.instance);
 
   // logique pour la collecte des données
-  final clientCubit = ClientCubit();
-  ApiService apiService = ApiService(clientCubit);
+  final clientService = ClientService();
+  ApiService apiService = ApiService(clientService);
 
   String? sessionToken =
-      await clientCubit.getSavedSessionToken(Config.getXClientSessionKey());
-  final clientData = await clientCubit.collectClientData();
+      await clientService.getSavedSessionToken(Config.getXClientSessionKey());
+  final clientData = await clientService.collectClientData();
 
   sessionToken == null
       ? await apiService.createSession(clientData)

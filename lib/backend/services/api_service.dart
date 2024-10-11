@@ -1,29 +1,51 @@
 import 'package:dio/dio.dart';
-import 'package:fleet_consumer/backend/blocs/client/client_cubit.dart';
 import 'package:fleet_consumer/backend/models/api_result.dart';
 import 'package:fleet_consumer/backend/models/client.dart';
 import 'package:fleet_consumer/backend/models/coupon.dart';
 import 'package:fleet_consumer/backend/models/payment.dart';
 import 'package:fleet_consumer/backend/models/product.dart';
 import 'package:fleet_consumer/backend/models/service.dart';
+import 'package:fleet_consumer/backend/services/client_service.dart';
 import 'package:fleet_consumer/config.dart';
+import 'package:flutter/material.dart';
 
 class ApiService {
-  final ClientCubit clientCubit;
+  final ClientService clientService;
 
-  ApiService(this.clientCubit); // Le cubit est passé en paramètre ici
+  ApiService(
+      this.clientService); // Le service d'authentification client est passé en paramètre ici
 
   Dio get _client {
     BaseOptions options = BaseOptions(
-        baseUrl: Config.getBaseUrl(),
-        followRedirects: true,
-        headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/json",
-          "X-CLIENT-SESSION": clientCubit.state.sessionToken
-        },
-        receiveTimeout: const Duration(seconds: 30));
-    return Dio(options);
+      baseUrl: Config.getBaseUrl(),
+      followRedirects: true,
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+      },
+      receiveTimeout: const Duration(seconds: 30),
+    );
+
+    Dio dio = Dio(options);
+
+    // Ajouter l'intercepteur qui rajoute le header X-CLIENT-SESSION sur toutes les requettes sauf le register
+    dio.interceptors
+        .add(InterceptorsWrapper(onRequest: (options, handler) async {
+      if (options.path.contains("/client/register")) {
+        return handler.next(options); //
+      }
+
+      String? sessionToken = await clientService
+          .getSavedSessionToken(Config.getXClientSessionKey());
+      if (sessionToken != null) {
+        options.headers["X-CLIENT-SESSION"] = sessionToken;
+        debugPrint("X-CLIENT-SESSION ajouté: $sessionToken");
+      }
+
+      return handler.next(options); 
+    }));
+
+    return dio;
   }
 
   Future<List<Service>> getServices() {
@@ -54,11 +76,11 @@ class ApiService {
 
         if (sessionAction == "terminated") {
           final Future<Client> client =
-              clientCubit.collectClientData().then((client) => client);
+              clientService.collectClientData().then((client) => client);
           createSession(await client);
         } else if (sessionAction == "refresh") {
           final Future<Client> client =
-              clientCubit.collectClientData().then((client) => client);
+              clientService.collectClientData().then((client) => client);
           sendCollectedData(await client);
         }
       }
@@ -83,16 +105,15 @@ class ApiService {
 
   // Créer une nouvelles session avec les données collectée contenues dans l'objet client
   Future<void> createSession(Client client) {
-    Dio apiClient = Dio(_client.options);
-    apiClient.options.headers.remove("X-CLIENT-SESSION");
-    return apiClient
+    return _client
         .post("/client/register", data: client.toJson())
-        .then((res) {
+        .then((res) async {
       if (res.statusCode == 201) {
-        Map<String, Map<String, String?>> data =
-            res.data as Map<String, Map<String, String?>>;
+        final data = res.data;
         String sessionToken = data["data"]!["session_token"] ?? "";
-        clientCubit.saveSession(sessionToken, Config.getXClientSessionKey());
+        debugPrint("On a un wey");
+        await clientService.saveSession(
+            sessionToken, Config.getXClientSessionKey());
       }
     }).then((value) => {});
   }
