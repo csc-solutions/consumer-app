@@ -1,4 +1,5 @@
 import 'package:fleet_consumer/app_router.dart';
+import 'package:fleet_consumer/backend/blocs/client/client_cubit.dart';
 import 'package:fleet_consumer/backend/blocs/service/service_cubit.dart';
 import 'package:fleet_consumer/backend/blocs/settings/settings_cubit.dart';
 import 'package:fleet_consumer/backend/services/api_service.dart';
@@ -20,7 +21,7 @@ class FleetConsumerApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
       providers: [
-        RepositoryProvider<ApiService>(create: (context) => ApiService()),
+        RepositoryProvider<ApiService>(create: (context) => ApiService(context.read<ClientCubit>())),
         RepositoryProvider<Store>(create: (context) => objectBox.store),
       ],
       child: MultiBlocProvider(
@@ -30,7 +31,8 @@ class FleetConsumerApp extends StatelessWidget {
           ),
           BlocProvider(
             create: (context) => ServiceCubit(context.read<ApiService>()),
-          )
+          ),
+          BlocProvider(create: (context) => ClientCubit()),
         ],
         child: MaterialApp.router(
           localizationsDelegates: const [
