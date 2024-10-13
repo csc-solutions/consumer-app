@@ -6,18 +6,19 @@ import 'package:flutter/foundation.dart';
 class ClientService {
   ClientService();
 
-  /// Sauvegarde le sessionToken(X-CLIENT-SESSION) dans les SharedPreferences avec la clé sessionKey
+  /// Write the [sessionToken] (X-CLIENT-SESSION) in sharedPreferences using [sessionKey] as key
   Future<void> saveSession(String sessionToken, String sessionKey) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString(sessionKey, sessionToken);
   }
 
+  /// Read the [sessionToken] (X-CLIENT-SESSION) in sharedPreferences using [sessionKey] as key
   Future<String?> getSavedSessionToken(String sessionKey) async {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getString(sessionKey);
   }
 
-  /// Collecte les informations de l'appareil avec le package device_info_plus
+  /// Collect device informations with the package device_info_plus
   Future<Client> collectClientData() async {
     final deviceInfo = DeviceInfoPlugin();
     Client client;

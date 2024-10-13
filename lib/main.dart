@@ -16,17 +16,5 @@ void main() async {
   HydratedBloc.storage = await HydratedStorage.build(storageDirectory: dir);
   FlutterNativeSplash.preserve(widgetsBinding: WidgetsBinding.instance);
 
-  // logique pour la collecte des données
-  final clientService = ClientService();
-  ApiService apiService = ApiService(clientService);
-
-  String? sessionToken =
-      await clientService.getSavedSessionToken(Config.getXClientSessionKey());
-  final clientData = await clientService.collectClientData();
-
-  sessionToken == null
-      ? await apiService.createSession(clientData)
-      : await apiService.sendCollectedData(clientData);
-
   runApp(FleetConsumerApp(objectbox));
 }

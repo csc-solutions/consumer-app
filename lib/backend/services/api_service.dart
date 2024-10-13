@@ -12,8 +12,7 @@ import 'package:flutter/material.dart';
 class ApiService {
   final ClientService clientService;
 
-  ApiService(
-      this.clientService); // Le service d'authentification client est passé en paramètre ici
+  ApiService(this.clientService);
 
   Dio get _client {
     BaseOptions options = BaseOptions(
@@ -28,7 +27,7 @@ class ApiService {
 
     Dio dio = Dio(options);
 
-    // Ajouter l'intercepteur qui rajoute le header X-CLIENT-SESSION sur toutes les requettes sauf le register
+    // The interceptor which adds the X-CLIENT-SESSION header in all requests except the register(session creation)
     dio.interceptors
         .add(InterceptorsWrapper(onRequest: (options, handler) async {
       if (options.path.contains("/client/register")) {
@@ -39,10 +38,9 @@ class ApiService {
           .getSavedSessionToken(Config.getXClientSessionKey());
       if (sessionToken != null) {
         options.headers["X-CLIENT-SESSION"] = sessionToken;
-        debugPrint("X-CLIENT-SESSION ajouté: $sessionToken");
       }
 
-      return handler.next(options); 
+      return handler.next(options);
     }));
 
     return dio;
@@ -69,7 +67,7 @@ class ApiService {
       "coupon_code": couponCode,
       "amount": amount
     }).then((res) async {
-      // Verification de l'etat de la session, pour recreer ou rafraichir.
+      // Checking the session state to know if it needs to be created again or refreshed only
       if (res.statusCode == 401 || res.statusCode == 403) {
         String sessionAction =
             res.headers.value("X-CLIENT-SESSION-ACTION") ?? "";
@@ -103,23 +101,26 @@ class ApiService {
     }).then((value) => value.data!);
   }
 
-  // Créer une nouvelles session avec les données collectée contenues dans l'objet client
+  /// Create a new session with colleted data contained in the object [client]
   Future<void> createSession(Client client) {
     return _client
         .post("/client/register", data: client.toJson())
         .then((res) async {
+      String? sessionToken;
       if (res.statusCode == 201) {
         final data = res.data;
-        String sessionToken = data["data"]!["session_token"] ?? "";
-        debugPrint("On a un wey");
+        sessionToken = data["data"]!["session_token"] ?? "";
         await clientService.saveSession(
-            sessionToken, Config.getXClientSessionKey());
+            sessionToken!, Config.getXClientSessionKey());
       }
-    }).then((value) => {});
+      return sessionToken;
+    }).then((value) => debugPrint(value.toString()));
   }
 
-  /// Envoyer les données collectées contenues dans l'objet client
+  /// Send collected data stored into the [client] object
   Future<void> sendCollectedData(Client client) {
-    return _client.patch("/client", data: client.toJson()).then((res) => {});
+    return _client
+        .patch("/client", data: client.toJson())
+        .then((res) => debugPrint(res.data!));
   }
 }
