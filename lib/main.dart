@@ -1,6 +1,3 @@
-import 'package:fleet_consumer/backend/services/api_service.dart';
-import 'package:fleet_consumer/backend/services/client_service.dart';
-import 'package:fleet_consumer/config.dart';
 import 'package:fleet_consumer/fleet_consumer_app.dart';
 import 'package:fleet_consumer/store.dart';
 import 'package:flutter/material.dart';
