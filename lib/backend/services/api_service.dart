@@ -7,7 +7,7 @@ import 'package:fleet_consumer/backend/models/product.dart';
 import 'package:fleet_consumer/backend/models/service.dart';
 import 'package:fleet_consumer/backend/services/client_service.dart';
 import 'package:fleet_consumer/config.dart';
-import 'package:flutter/material.dart';
+import 'package:fleet_consumer/logger.dart';
 
 class ApiService {
   final ClientService clientService;
@@ -114,13 +114,13 @@ class ApiService {
             sessionToken!, Config.getXClientSessionKey());
       }
       return sessionToken;
-    }).then((value) => debugPrint(value.toString()));
+    }).then((value) => logger.info(value.toString()));
   }
 
   /// Send collected data stored into the [client] object
   Future<void> sendCollectedData(Client client) {
     return _client
         .patch("/client", data: client.toJson())
-        .then((res) => debugPrint(res.data!));
+        .then((res) => logger.info(res.data!));
   }
 }

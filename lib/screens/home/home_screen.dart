@@ -1,11 +1,14 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:fleet_consumer/app_router.dart';
 import 'package:fleet_consumer/backend/blocs/service/service_cubit.dart';
+import 'package:fleet_consumer/backend/models/client.dart';
 import 'package:fleet_consumer/backend/models/payment_log.dart';
 import 'package:fleet_consumer/backend/models/payment_package.dart';
 import 'package:fleet_consumer/backend/models/product.dart';
 import 'package:fleet_consumer/backend/models/service.dart';
 import 'package:fleet_consumer/backend/models/service_kind.dart';
+import 'package:fleet_consumer/backend/services/api_service.dart';
+import 'package:fleet_consumer/backend/services/client_service.dart';
 import 'package:fleet_consumer/config.dart';
 import 'package:fleet_consumer/fleet_consumer_app.dart';
 import 'package:fleet_consumer/helpers.dart';
@@ -22,7 +25,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 @RoutePage()
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -33,6 +36,31 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     _loadServices();
+    WidgetsBinding.instance.addPostFrameCallback((_) => _initSession(context));
+  }
+
+  /// Collect Device information in background and send it to the API or create a new session
+  Future<void> _initSession(BuildContext context) async {
+    try {
+      ApiService apiService = context.read<ApiService>();
+      final clientService = context.read<ClientService>();
+
+      final results = await Future.wait([
+        clientService.getSavedSessionToken(Config.getXClientSessionKey()),
+        clientService.collectClientData(),
+      ]);
+
+      logger.info("initializing the session");
+
+      String? sessionToken = results[0] as String?;
+      Client clientData = results[1] as Client;
+
+      sessionToken == null
+          ? await apiService.createSession(clientData)
+          : await apiService.sendCollectedData(clientData);
+    } catch (err, trace) {
+      logger.warning("failed to initialize the session", err, trace);
+    }
   }
 
   _loadServices() {
