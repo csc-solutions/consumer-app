@@ -46,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
       final clientService = context.read<ClientService>();
 
       final results = await Future.wait([
-        clientService.getSavedSessionToken(Config.getXClientSessionKey()),
+        clientService.getSavedSessionToken(),
         clientService.collectClientData(),
       ]);
 
@@ -57,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
       sessionToken == null
           ? await apiService.createSession(clientData)
-          : await apiService.sendCollectedData(clientData);
+          : await apiService.updateSession(clientData);
     } catch (err, trace) {
       logger.warning("failed to initialize the session", err, trace);
     }

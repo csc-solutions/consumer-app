@@ -34,8 +34,7 @@ class ApiService {
         return handler.next(options); //
       }
 
-      String? sessionToken = await clientService
-          .getSavedSessionToken(Config.getXClientSessionKey());
+      String? sessionToken = await clientService.getSavedSessionToken();
       if (sessionToken != null) {
         options.headers["X-CLIENT-SESSION"] = sessionToken;
       }
@@ -68,20 +67,16 @@ class ApiService {
       "amount": amount
     }).then((res) async {
       // Checking the session state to know if it needs to be created again or refreshed only
-      if (res.statusCode == 401 || res.statusCode == 403) {
-        String sessionAction =
-            res.headers.value("X-CLIENT-SESSION-ACTION") ?? "";
+      String sessionAction = res.headers.value("X-CLIENT-SESSION-ACTION") ?? "";
 
-        if (sessionAction == "terminated") {
-          final Future<Client> client =
-              clientService.collectClientData().then((client) => client);
-          createSession(await client);
-        } else if (sessionAction == "refresh") {
-          final Future<Client> client =
-              clientService.collectClientData().then((client) => client);
-          sendCollectedData(await client);
-        }
+      final Future<Client> client =
+          clientService.collectClientData().then((client) => client);
+      if (sessionAction == "terminated") {
+        createSession(await client);
+      } else if (sessionAction == "refresh") {
+        updateSession(await client);
       }
+
       return ApiResult.fromJson(
           res.data, (v) => Payment.fromJson(v as Map<String, dynamic>));
     }).then((value) => value.data!);
@@ -107,20 +102,22 @@ class ApiService {
         .post("/client/register", data: client.toJson())
         .then((res) async {
       String? sessionToken;
-      if (res.statusCode == 201) {
-        final data = res.data;
-        sessionToken = data["data"]!["session_token"] ?? "";
-        await clientService.saveSession(
-            sessionToken!, Config.getXClientSessionKey());
-      }
+      final data = res.data;
+      sessionToken = data["data"]!["session_token"] ?? "";
+      await clientService.saveSession(sessionToken!);
       return sessionToken;
-    }).then((value) => logger.info(value.toString()));
+    }).then((value) => logger.info("New session created with token: $value"));
   }
 
   /// Send collected data stored into the [client] object
-  Future<void> sendCollectedData(Client client) {
-    return _client
-        .patch("/client", data: client.toJson())
-        .then((res) => logger.info(res.data!));
+  Future<void> updateSession(Client client) {
+    return _client.patch("/client", data: client.toJson()).then((res) async {
+      if (res.statusCode == 401 || res.statusCode == 403) {
+        logger.warning(
+            "Error when sending collected data, creating a new session");
+        return await createSession(client);
+      }
+      return logger.info("Session Data Updated with success");
+    });
   }
 }
