@@ -31,7 +31,7 @@ class ApiService {
     dio.interceptors
         .add(InterceptorsWrapper(onRequest: (options, handler) async {
       if (options.path.contains("/client/register")) {
-        return handler.next(options); //
+        return handler.next(options);
       }
 
       String? sessionToken = await clientService.getSavedSessionToken();
@@ -43,6 +43,21 @@ class ApiService {
     }));
 
     return dio;
+  }
+
+  /// Collect Device information in background and send it to the API or create a new session
+  Future<void> initSession() async {
+    try {
+      logger.info("initializing the session");
+
+      Client clientData = await clientService.collectClientData();
+
+      await clientService.isLoggedIn 
+          ? await createSession(clientData)
+          : await updateSession(clientData);
+    } catch (err, trace) {
+      logger.warning("failed to initialize the session", err, trace);
+    }
   }
 
   Future<List<Service>> getServices() {

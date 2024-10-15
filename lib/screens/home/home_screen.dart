@@ -40,28 +40,8 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   /// Collect Device information in background and send it to the API or create a new session
-  Future<void> _initSession(BuildContext context) async {
-    try {
-      ApiService apiService = context.read<ApiService>();
-      final clientService = context.read<ClientService>();
-
-      final results = await Future.wait([
-        clientService.getSavedSessionToken(),
-        clientService.collectClientData(),
-      ]);
-
-      logger.info("initializing the session");
-
-      String? sessionToken = results[0] as String?;
-      Client clientData = results[1] as Client;
-
-      sessionToken == null
-          ? await apiService.createSession(clientData)
-          : await apiService.updateSession(clientData);
-    } catch (err, trace) {
-      logger.warning("failed to initialize the session", err, trace);
-    }
-  }
+  Future<void> _initSession(BuildContext context) async =>
+      await context.read<ApiService>().initSession();
 
   _loadServices() {
     logger.info("loading service");

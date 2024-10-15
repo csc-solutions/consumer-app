@@ -14,7 +14,7 @@ class ClientService {
     await prefs.setString(sessionKey, ClientService.sessionKey);
   }
 
-  Future<bool> get loggedIn async => await getSavedSessionToken() != null;
+  Future<bool> get isLoggedIn async => await getSavedSessionToken() != null;
 
   Future<void> initSession() async {}
 
