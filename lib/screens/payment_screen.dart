@@ -17,6 +17,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:flutter_native_contact_picker/flutter_native_contact_picker.dart';
+import 'package:flutter_native_contact_picker/model/contact.dart';
 import 'package:formz/formz.dart';
 import 'package:objectbox/objectbox.dart';
 
@@ -56,7 +57,7 @@ class PaymentScreen extends StatefulWidget implements AutoRouteWrapper {
 }
 
 class _PaymentScreenState extends State<PaymentScreen> {
-  final FlutterContactPicker _contactPicker = FlutterContactPicker();
+  final FlutterNativeContactPicker _contactPicker = FlutterNativeContactPicker();
   TextEditingController destinationInputController = TextEditingController();
   @override
   void initState() {
