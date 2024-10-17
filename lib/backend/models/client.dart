@@ -5,6 +5,7 @@ part 'client.g.dart';
 
 @Freezed()
 class Client with _$Client {
+  @JsonSerializable(fieldRename: FieldRename.snake)
   const factory Client({
     @Default("") String deviceId,
     @Default("") String deviceType,

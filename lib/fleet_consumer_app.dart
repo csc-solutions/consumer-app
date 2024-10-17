@@ -10,18 +10,21 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class FleetConsumerApp extends StatelessWidget {
   static const primaryColor = Color.fromRGBO(28, 60, 245, 1);
-  FleetConsumerApp(this.objectBox, {super.key});
+  FleetConsumerApp(this.objectBox, this.preferences, {super.key});
   final _appRouter = AppRouter();
   final ObjectBox objectBox;
+  final SharedPreferences preferences;
 
   @override
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
       providers: [
-        RepositoryProvider<ClientService>(create: (context) => ClientService()),
+        RepositoryProvider<ClientService>(
+            create: (context) => ClientService(preferences)),
         RepositoryProvider<ApiService>(
             create: (context) => ApiService(context.read<ClientService>())),
         RepositoryProvider<Store>(create: (context) => objectBox.store),

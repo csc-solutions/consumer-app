@@ -1,14 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:fleet_consumer/app_router.dart';
 import 'package:fleet_consumer/backend/blocs/service/service_cubit.dart';
-import 'package:fleet_consumer/backend/models/client.dart';
 import 'package:fleet_consumer/backend/models/payment_log.dart';
 import 'package:fleet_consumer/backend/models/payment_package.dart';
 import 'package:fleet_consumer/backend/models/product.dart';
 import 'package:fleet_consumer/backend/models/service.dart';
 import 'package:fleet_consumer/backend/models/service_kind.dart';
 import 'package:fleet_consumer/backend/services/api_service.dart';
-import 'package:fleet_consumer/backend/services/client_service.dart';
 import 'package:fleet_consumer/config.dart';
 import 'package:fleet_consumer/fleet_consumer_app.dart';
 import 'package:fleet_consumer/helpers.dart';
@@ -36,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     _loadServices();
-    WidgetsBinding.instance.addPostFrameCallback((_) => _initSession(context));
+    _initSession(context);
   }
 
   /// Collect Device information in background and send it to the API or create a new session

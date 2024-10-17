@@ -34,7 +34,7 @@ class ApiService {
         return handler.next(options);
       }
 
-      String? sessionToken = await clientService.getSavedSessionToken();
+      String? sessionToken = clientService.getSavedSessionToken();
       if (sessionToken != null) {
         options.headers["X-CLIENT-SESSION"] = sessionToken;
       }
@@ -49,12 +49,10 @@ class ApiService {
   Future<void> initSession() async {
     try {
       logger.info("initializing the session");
-
       Client clientData = await clientService.collectClientData();
-
-      await clientService.isLoggedIn 
-          ? await createSession(clientData)
-          : await updateSession(clientData);
+      clientService.isLoggedIn
+          ? await updateSession(clientData)
+          : await createSession(clientData);
     } catch (err, trace) {
       logger.warning("failed to initialize the session", err, trace);
     }
@@ -113,26 +111,35 @@ class ApiService {
 
   /// Create a new session with colleted data contained in the object [client]
   Future<void> createSession(Client client) {
-    return _client
-        .post("/client/register", data: client.toJson())
-        .then((res) async {
-      String? sessionToken;
+    return _client.post("/client/register", data: client.toJson()).then((res) {
       final data = res.data;
-      sessionToken = data["data"]!["session_token"] ?? "";
-      await clientService.saveSession(sessionToken!);
-      return sessionToken;
-    }).then((value) => logger.info("New session created with token: $value"));
+      String sessionToken = data["data"]!["session_token"]!;
+      clientService.saveSession(sessionToken);
+      logger.info("session token created $sessionToken");
+    }).catchError((err, trace) {
+      logger.warning("failed to create session", err, trace);
+      throw err;
+    });
   }
 
   /// Send collected data stored into the [client] object
   Future<void> updateSession(Client client) {
     return _client.patch("/client", data: client.toJson()).then((res) async {
-      if (res.statusCode == 401 || res.statusCode == 403) {
-        logger.warning(
-            "Error when sending collected data, creating a new session");
-        return await createSession(client);
-      }
       return logger.info("Session Data Updated with success");
+    }).catchError((err, trace) {
+      if (err is DioException) {
+        var res = err.response;
+        if (res != null && (res.statusCode == 401 || res.statusCode == 403)) {
+          clientService.invalidateSession();
+          logger.warning(
+              "request to update session failed with ${res.statusCode} status, client session invalidated",
+              err,
+              trace);
+          return createSession(client);
+        }
+      }
+      logger.warning("failed to update session", err, trace);
+      throw err;
     });
   }
 }
