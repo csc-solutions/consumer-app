@@ -19,7 +19,9 @@ mixin _$StatusState {
   Payment get payment => throw _privateConstructorUsedError;
   bool get isVerifying => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of StatusState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $StatusStateCopyWith<StatusState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -45,6 +47,8 @@ class _$StatusStateCopyWithImpl<$Res, $Val extends StatusState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of StatusState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -63,6 +67,8 @@ class _$StatusStateCopyWithImpl<$Res, $Val extends StatusState>
     ) as $Val);
   }
 
+  /// Create a copy of StatusState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PaymentCopyWith<$Res> get payment {
@@ -94,6 +100,8 @@ class __$$StatusStateImplCopyWithImpl<$Res>
       _$StatusStateImpl _value, $Res Function(_$StatusStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of StatusState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -142,7 +150,9 @@ class _$StatusStateImpl implements _StatusState {
   @override
   int get hashCode => Object.hash(runtimeType, payment, isVerifying);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of StatusState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$StatusStateImplCopyWith<_$StatusStateImpl> get copyWith =>
@@ -158,8 +168,11 @@ abstract class _StatusState implements StatusState {
   Payment get payment;
   @override
   bool get isVerifying;
+
+  /// Create a copy of StatusState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$StatusStateImplCopyWith<_$StatusStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

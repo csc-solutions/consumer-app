@@ -23,8 +23,12 @@ mixin _$ServiceState {
   List<Service> get services => throw _privateConstructorUsedError;
   ServiceStatus get status => throw _privateConstructorUsedError;
 
+  /// Serializes this ServiceState to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ServiceState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ServiceStateCopyWith<ServiceState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -48,6 +52,8 @@ class _$ServiceStateCopyWithImpl<$Res, $Val extends ServiceState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ServiceState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -86,6 +92,8 @@ class __$$ServiceStateImplCopyWithImpl<$Res>
       _$ServiceStateImpl _value, $Res Function(_$ServiceStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ServiceState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -143,12 +151,14 @@ class _$ServiceStateImpl implements _ServiceState {
             (identical(other.status, status) || other.status == status));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(_services), status);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ServiceState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ServiceStateImplCopyWith<_$ServiceStateImpl> get copyWith =>
@@ -174,8 +184,11 @@ abstract class _ServiceState implements ServiceState {
   List<Service> get services;
   @override
   ServiceStatus get status;
+
+  /// Create a copy of ServiceState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ServiceStateImplCopyWith<_$ServiceStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

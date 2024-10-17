@@ -25,8 +25,12 @@ mixin _$Client {
   String get deviceName => throw _privateConstructorUsedError;
   String get osVersion => throw _privateConstructorUsedError;
 
+  /// Serializes this Client to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Client
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ClientCopyWith<Client> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -52,6 +56,8 @@ class _$ClientCopyWithImpl<$Res, $Val extends Client>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Client
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -103,6 +109,8 @@ class __$$ClientImplCopyWithImpl<$Res>
       _$ClientImpl _value, $Res Function(_$ClientImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Client
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -133,7 +141,8 @@ class __$$ClientImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(fieldRename: FieldRename.snake)
 class _$ClientImpl implements _Client {
   const _$ClientImpl(
       {this.deviceId = "",
@@ -177,12 +186,14 @@ class _$ClientImpl implements _Client {
                 other.osVersion == osVersion));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, deviceId, deviceType, deviceName, osVersion);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Client
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ClientImplCopyWith<_$ClientImpl> get copyWith =>
@@ -213,8 +224,11 @@ abstract class _Client implements Client {
   String get deviceName;
   @override
   String get osVersion;
+
+  /// Create a copy of Client
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ClientImplCopyWith<_$ClientImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

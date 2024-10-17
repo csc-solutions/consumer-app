@@ -20,7 +20,9 @@ mixin _$PaymentForm {
   DestinationInput get destinationInput => throw _privateConstructorUsedError;
   MomoNumberInput get momoNumberInput => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PaymentForm
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PaymentFormCopyWith<PaymentForm> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -47,6 +49,8 @@ class _$PaymentFormCopyWithImpl<$Res, $Val extends PaymentForm>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PaymentForm
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -93,6 +97,8 @@ class __$$PaymentFormImplCopyWithImpl<$Res>
       _$PaymentFormImpl _value, $Res Function(_$PaymentFormImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PaymentForm
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -158,7 +164,9 @@ class _$PaymentFormImpl extends _PaymentForm {
   int get hashCode =>
       Object.hash(runtimeType, amountInput, destinationInput, momoNumberInput);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PaymentForm
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PaymentFormImplCopyWith<_$PaymentFormImpl> get copyWith =>
@@ -178,8 +186,11 @@ abstract class _PaymentForm extends PaymentForm {
   DestinationInput get destinationInput;
   @override
   MomoNumberInput get momoNumberInput;
+
+  /// Create a copy of PaymentForm
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PaymentFormImplCopyWith<_$PaymentFormImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -23,9 +23,13 @@ ApiResult<T> _$ApiResultFromJson<T>(
 mixin _$ApiResult<T> {
   T? get data => throw _privateConstructorUsedError;
 
+  /// Serializes this ApiResult to a JSON map.
   Map<String, dynamic> toJson(Object? Function(T) toJsonT) =>
       throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ApiResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ApiResultCopyWith<T, ApiResult<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -49,6 +53,8 @@ class _$ApiResultCopyWithImpl<T, $Res, $Val extends ApiResult<T>>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ApiResult
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -82,6 +88,8 @@ class __$$ApiResultImplCopyWithImpl<T, $Res>
       _$ApiResultImpl<T> _value, $Res Function(_$ApiResultImpl<T>) _then)
       : super(_value, _then);
 
+  /// Create a copy of ApiResult
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -121,12 +129,14 @@ class _$ApiResultImpl<T> implements _ApiResult<T> {
             const DeepCollectionEquality().equals(other.data, data));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ApiResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ApiResultImplCopyWith<T, _$ApiResultImpl<T>> get copyWith =>
@@ -147,8 +157,11 @@ abstract class _ApiResult<T> implements ApiResult<T> {
 
   @override
   T? get data;
+
+  /// Create a copy of ApiResult
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ApiResultImplCopyWith<T, _$ApiResultImpl<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }

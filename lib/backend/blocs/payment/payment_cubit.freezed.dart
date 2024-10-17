@@ -22,7 +22,9 @@ mixin _$PaymentState {
   Coupon get coupon => throw _privateConstructorUsedError;
   Product get product => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PaymentState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PaymentStateCopyWith<PaymentState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -56,6 +58,8 @@ class _$PaymentStateCopyWithImpl<$Res, $Val extends PaymentState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PaymentState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -89,6 +93,8 @@ class _$PaymentStateCopyWithImpl<$Res, $Val extends PaymentState>
     ) as $Val);
   }
 
+  /// Create a copy of PaymentState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PaymentFormCopyWith<$Res> get form {
@@ -97,6 +103,8 @@ class _$PaymentStateCopyWithImpl<$Res, $Val extends PaymentState>
     });
   }
 
+  /// Create a copy of PaymentState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PaymentCopyWith<$Res> get payment {
@@ -105,6 +113,8 @@ class _$PaymentStateCopyWithImpl<$Res, $Val extends PaymentState>
     });
   }
 
+  /// Create a copy of PaymentState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CouponCopyWith<$Res> get coupon {
@@ -113,6 +123,8 @@ class _$PaymentStateCopyWithImpl<$Res, $Val extends PaymentState>
     });
   }
 
+  /// Create a copy of PaymentState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ProductCopyWith<$Res> get product {
@@ -155,6 +167,8 @@ class __$$PaymentStateImplCopyWithImpl<$Res>
       _$PaymentStateImpl _value, $Res Function(_$PaymentStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PaymentState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -237,7 +251,9 @@ class _$PaymentStateImpl extends _PaymentState {
   int get hashCode =>
       Object.hash(runtimeType, status, form, payment, coupon, product);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PaymentState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PaymentStateImplCopyWith<_$PaymentStateImpl> get copyWith =>
@@ -263,8 +279,11 @@ abstract class _PaymentState extends PaymentState {
   Coupon get coupon;
   @override
   Product get product;
+
+  /// Create a copy of PaymentState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PaymentStateImplCopyWith<_$PaymentStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

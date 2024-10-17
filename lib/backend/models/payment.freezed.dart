@@ -40,8 +40,12 @@ mixin _$Payment {
   @JsonKey(name: "updated_at")
   DateTime? get updatedAt => throw _privateConstructorUsedError;
 
+  /// Serializes this Payment to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Payment
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PaymentCopyWith<Payment> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -79,6 +83,8 @@ class _$PaymentCopyWithImpl<$Res, $Val extends Payment>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Payment
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -147,6 +153,8 @@ class _$PaymentCopyWithImpl<$Res, $Val extends Payment>
     ) as $Val);
   }
 
+  /// Create a copy of Payment
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ProductCopyWith<$Res> get product {
@@ -155,6 +163,8 @@ class _$PaymentCopyWithImpl<$Res, $Val extends Payment>
     });
   }
 
+  /// Create a copy of Payment
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ServiceCopyWith<$Res> get service {
@@ -163,6 +173,8 @@ class _$PaymentCopyWithImpl<$Res, $Val extends Payment>
     });
   }
 
+  /// Create a copy of Payment
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ServiceCopyWith<$Res> get servicePayment {
@@ -209,6 +221,8 @@ class __$$PaymentImplCopyWithImpl<$Res>
       _$PaymentImpl _value, $Res Function(_$PaymentImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Payment
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -366,7 +380,7 @@ class _$PaymentImpl extends _Payment {
                 other.updatedAt == updatedAt));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -383,7 +397,9 @@ class _$PaymentImpl extends _Payment {
       createdAt,
       updatedAt);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Payment
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PaymentImplCopyWith<_$PaymentImpl> get copyWith =>
@@ -446,8 +462,11 @@ abstract class _Payment extends Payment {
   @override
   @JsonKey(name: "updated_at")
   DateTime? get updatedAt;
+
+  /// Create a copy of Payment
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PaymentImplCopyWith<_$PaymentImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
