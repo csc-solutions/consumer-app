@@ -2,6 +2,7 @@ import 'package:fleet_consumer/app_router.dart';
 import 'package:fleet_consumer/backend/blocs/service/service_cubit.dart';
 import 'package:fleet_consumer/backend/blocs/settings/settings_cubit.dart';
 import 'package:fleet_consumer/backend/services/api_service.dart';
+import 'package:fleet_consumer/backend/services/client_service.dart';
 import 'package:fleet_consumer/store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,18 +10,23 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class FleetConsumerApp extends StatelessWidget {
   static const primaryColor = Color.fromRGBO(28, 60, 245, 1);
-  FleetConsumerApp(this.objectBox, {super.key});
+  FleetConsumerApp(this.objectBox, this.preferences, {super.key});
   final _appRouter = AppRouter();
   final ObjectBox objectBox;
+  final SharedPreferences preferences;
 
   @override
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
       providers: [
-        RepositoryProvider<ApiService>(create: (context) => ApiService()),
+        RepositoryProvider<ClientService>(
+            create: (context) => ClientService(preferences)),
+        RepositoryProvider<ApiService>(
+            create: (context) => ApiService(context.read<ClientService>())),
         RepositoryProvider<Store>(create: (context) => objectBox.store),
       ],
       child: MultiBlocProvider(
@@ -30,7 +36,7 @@ class FleetConsumerApp extends StatelessWidget {
           ),
           BlocProvider(
             create: (context) => ServiceCubit(context.read<ApiService>()),
-          )
+          ),
         ],
         child: MaterialApp.router(
           localizationsDelegates: const [

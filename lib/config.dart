@@ -6,4 +6,5 @@ class Config {
   static String supportNumber() {
     return "+237650675795";
   }
+
 }

@@ -6,6 +6,7 @@ import 'package:fleet_consumer/backend/models/payment_package.dart';
 import 'package:fleet_consumer/backend/models/product.dart';
 import 'package:fleet_consumer/backend/models/service.dart';
 import 'package:fleet_consumer/backend/models/service_kind.dart';
+import 'package:fleet_consumer/backend/services/api_service.dart';
 import 'package:fleet_consumer/config.dart';
 import 'package:fleet_consumer/fleet_consumer_app.dart';
 import 'package:fleet_consumer/helpers.dart';
@@ -22,7 +23,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 @RoutePage()
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -33,7 +34,12 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     _loadServices();
+    _initSession(context);
   }
+
+  /// Collect Device information in background and send it to the API or create a new session
+  Future<void> _initSession(BuildContext context) async =>
+      await context.read<ApiService>().initSession();
 
   _loadServices() {
     logger.info("loading service");

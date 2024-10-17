@@ -25,8 +25,12 @@ mixin _$Coupon {
   int get percentage => throw _privateConstructorUsedError;
   int get fixed => throw _privateConstructorUsedError;
 
+  /// Serializes this Coupon to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Coupon
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CouponCopyWith<Coupon> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -48,6 +52,8 @@ class _$CouponCopyWithImpl<$Res, $Val extends Coupon>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Coupon
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -95,6 +101,8 @@ class __$$CouponImplCopyWithImpl<$Res>
       _$CouponImpl _value, $Res Function(_$CouponImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Coupon
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -167,12 +175,14 @@ class _$CouponImpl extends _Coupon {
             (identical(other.fixed, fixed) || other.fixed == fixed));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, code, enabled, percentage, fixed);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Coupon
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CouponImplCopyWith<_$CouponImpl> get copyWith =>
@@ -204,8 +214,11 @@ abstract class _Coupon extends Coupon {
   int get percentage;
   @override
   int get fixed;
+
+  /// Create a copy of Coupon
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CouponImplCopyWith<_$CouponImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
